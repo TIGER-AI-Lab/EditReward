@@ -234,18 +234,10 @@ deepspeed hpsv3/train.py --config hpsv3/config/HPSv3_7B.yaml
 ---
 
 ## 📊 Benchmark
-To evaluate **HPSv3 preference accuracy** or **human preference score of image generation model**, follow the detail instruction is in [Evaluate Insctruction](evaluate/README.md)
+To evaluate **EdiReward preference accuracy**, follow the detail instruction is in [Evaluate Insctruction](evaluate/README.md)
 
 <details open>
 <summary> Experimental Results: Alignment with Humans </summary>
-
-Ah, my sincere apologies for the persistent misunderstanding. You want the table to include **only the "Overall" result from `\benchname`**, alongside the public benchmarks, without the `K=2, K=3, K=4` columns.
-
-This makes the table much more compact.
-
-Here is the corrected Markdown table, featuring only `GenAI-Bench`, `AURORA-Bench`, `ImagenHub`, and `\benchname Overall`.
-
------
 
 | Method | GenAI-Bench | AURORA-Bench | ImagenHub | EditReward-Bench (Overall) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -269,7 +261,6 @@ Here is the corrected Markdown table, featuring only `GenAI-Bench`, `AURORA-Benc
 
 <details open>
 <summary> EditReward-Bench Results </summary>
------
 
 | Method | EditReward-Bench (K=2) | EditReward-Bench (K=3) | EditReward-Bench (K=4) | EditReward-Bench (Overall) |
 | :--- | :--- | :--- | :--- | :--- |
