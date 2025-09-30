@@ -122,7 +122,7 @@ Human Preference Dataset v3 (HPD v3) comprises 1.08M text-image pairs and 1.17M 
 <p align="left">
   <img src="assets/dataset_stat.pdf" alt="dataset" width="500"/>
 </p>
-<details close>
+<!-- <details close> -->
 
 ### Download EditReward
 <!-- ```
