@@ -25,7 +25,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 
 ## 📰 News
-- **[2025-10-01]** 🎉 We release EditReward: inference code, training code and [EditReward model weights](https://huggingface.co/MizzenAI/HPSv3). And [PyPI Package](https://pypi.org/project/hpsv3/).
+- **[2025-10-01]** 🎉 We initialize the official repo of EditReward.
 
 <!-- TODO List -->
 ## 🚧 TODO List
@@ -100,7 +100,7 @@ print(f"Image scores: {scores}")
 ### EditReward-Data
 work in progress
 <p align="left">
-  <img src="assets/dataset_stat.png" alt="dataset" width="500"/>
+  <img src="assets/dataset_stat.png" alt="dataset" width="900"/>
 </p>
 <!-- <details close> -->
 
@@ -128,6 +128,7 @@ To evaluate **EdiReward preference accuracy**, follow the detail instruction is 
 work in progress
 
 <details open>
+
 <summary> Experimental Results: Alignment with Humans </summary>
 
 | Method | GenAI-Bench | AURORA-Bench | ImagenHub | EditReward-Bench (Overall) |
@@ -136,9 +137,9 @@ work in progress
 | Human-to-Human | -- | -- | 41.84 | -- |
 | ***Proprietary Models*** | | | | |
 | GPT-4o | 53.54 | 50.81 | 38.21 | 28.31 |
-| GPT-5 | 59.61 | 47.27 | \<u\>40.85\</u\> | 37.81 |
+| GPT-5 | 59.61 | 47.27 | <u>40.85</u> | 37.81 |
 | Gemini-2.0-Flash | 53.32 | 44.31 | 23.69 | 33.47 |
-| Gemini-2.5-Flash | 57.01 | 47.63 | **41.62** | \<u\>38.02\</u\> |
+| Gemini-2.5-Flash | 57.01 | 47.63 | **41.62** | <u>38.02</u> |
 | ***Open-Source VLMs*** | | | | |
 | Qwen2.5-VL-3B-Inst | 42.76 | 30.69 | -2.54 | 26.86 |
 | Qwen2.5-VL-7B-Inst | 40.48 | 38.62 | 18.59 | 29.75 |
@@ -146,11 +147,14 @@ work in progress
 | MiMo-VL-7B-SFT-2508 | 57.89 | 30.43 | 22.14 | 31.19 |
 | ADIEE | 59.96 | 55.56 | 34.50 | -- |
 | ***Reward Models (Ours)*** | | | | |
-| EditReward (on Qwen2.5-VL-7B) | \<u\>63.97\</u\> | \<u\>59.50\</u\> | 36.18 | 36.78 |
+| EditReward (on Qwen2.5-VL-7B) | <u>63.97\</u> | <u>59.50</u> | 36.18 | 36.78 |
 | EditReward (on MiMo-VL-7B) | **65.72** | **63.62** | 35.20 | **38.42** |
 </details>
 
+---
+
 <details open>
+
 <summary> EditReward-Bench Results </summary>
 
 | Method | EditReward-Bench (K=2) | EditReward-Bench (K=3) | EditReward-Bench (K=4) | EditReward-Bench (Overall) |
@@ -159,9 +163,9 @@ work in progress
 | Human-to-Human | -- | -- | -- | -- |
 | ***Proprietary Models*** | | | | |
 | GPT-4o | 45.69 | 27.33 | 7.31 | 28.31 |
-| GPT-5 | \<u\>57.53\</u\> | 38.51 | \<u\>12.84\</u\> | 37.81 |
+| GPT-5 | <u>57.53\</u> | 38.51 | <u>12.84\</u> | 37.81 |
 | Gemini-2.0-Flash | 52.43 | 33.33 | **13.51** | 33.47 |
-| Gemini-2.5-Flash | **58.61** | \<u\>39.86\</u\> | 12.16 | \<u\>38.02\</u\> |
+| Gemini-2.5-Flash | **58.61** | <u>39.86\</u> | 12.16 | <u>38.02\</u> |
 | ***Open-Source VLMs*** | | | | |
 | Qwen2.5-VL-3B-Inst | 51.07 | 20.27 | 2.71 | 26.86 |
 | Qwen2.5-VL-7B-Inst | 52.69 | 24.67 | 3.38 | 29.75 |
