@@ -5,28 +5,20 @@
     <meta charset="utf-8">
     <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
     <!-- Replace the content tag with appropriate information -->
-    <meta name="description" content="We introduce ImagenHub, a one-stop library to standardize the inference and evaluation of all the conditional image generation models.">
-    <meta property="og:title" content="ImagenHub: Standardizing the evaluation of conditional image generation models" />
-    <meta property="og:description" content="A one-stop library to standardize the inference and evaluation of all the conditional image generation models." />
-    <meta property="og:url" content="https://tiger-ai-lab.github.io/ImagenHub/" />
+    <meta name="description"
+          content="OmniEdit is an instruction-based image editing generalist capable of performing diverse editing tasks across different aspect ratios and resolutions. It accurately follows instructions while preserving the original image’s fidelity.">
+    <meta property="og:title"
+          content="OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision"/>
+    <meta property="og:description"
+          content="OmniEdit is an instruction-based image editing generalist capable of performing diverse editing tasks across different aspect ratios and resolutions. It accurately follows instructions while preserving the original image’s fidelity."/>
+    <meta property="og:url" content="https://tiger-ai-lab.github.io/EditReward/"/>
     <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-    <meta property="og:image" content="static/images/banner.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="static/images/uniir_teaser.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
 
-
-    <meta name="twitter:title" content="ImagenHub: Standardizing the evaluation of conditional image generation models">
-    <meta name="twitter:description" content="A one-stop library to standardize the inference and evaluation of all the conditional image generation models.">
-    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-    <meta name="twitter:image" content="static/images/banner.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <!-- Keywords for your paper to be indexed by-->
-    <meta name="keywords" content="imagenhub">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <title>ImagenHub</title>
-    <link rel="icon" type="image/x-icon" href="static/images/favicon_io/favicon.ico">
+    <title>EditReward</title>
+    <link rel="icon" type="image/x-icon" href="">
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
     <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -51,140 +43,134 @@
 <body>
 
 
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container is-max-desktop">
-                <div class="columns is-centered">
-                    <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title"> ImagenHub: Standardizing the evaluation of conditional image generation models</h1>
-                        <img src="static/images/banner.png" width="75%" alt="ImagenHub" />
-                        <div class="is-size-5 publication-authors">
-                            <!-- Paper authors -->
-                            <span class="author-block">
-                <sup>♠️</sup><a href="https://kuwingfung.github.io/" target="_blank">Max Ku</a>,</span>
-                            <span class="author-block">
-                  <sup>♠️</sup><a href="https://www.litianlephoebe.com/" target="_blank">Tianle Li</a>,
-                            <span class="author-block">
-                    <sup>†</sup><a href="https://drogozhang.github.io/" target="_blank">Kai Zhang</a>,
-                  </span>
-                            <span class="author-block">
-                    <sup>♣</sup><a href="https://yujielu10.github.io/" target="_blank">Yujie Lu</a>,
-                  </span>
-                            <span class="author-block">
-                    <sup>♥</sup><a href="https://zeyofu.github.io/" target="_blank">Xingyu Fu</a>,
-                  </span>
-                            <span class="author-block">
-                    <sup>♢</sup><a href="https://wwzhuang01.github.io/" target="_blank">Wenwen Zhuang</a>,
-                  </span>
-                            <span class="author-block">
-                    <sup>♠️</sup><a href="https://wenhuchen.github.io/" target="_blank">Wenhu Chen</a>
-                  </span>
-                        </div>
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <!-- <h1 class="title is-1 publication-title"> -->
+                    <h1 class="title is-1 vj-hero-title-cyber">
+                        EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing
+                    </h1>
+                    <div class="is-size-5 publication-authors">
+                        <!-- Paper authors -->
+                        <span class="author-block">
+                                  <sup>†</sup><a href="https://kemingwu.github.io/" target="_blank">Keming Wu</a><sup>♠️♣️*</sup>,
+                        </span>
+                        <span class="author-block">
+                                    <a href="https://sicongjiang.com/" target="_blank">Sicong Jiang</a><sup>♡ϑ*</sup>,
+                        </span>
+                        <span class="author-block">
+                                <a href="https://kuwingfung.github.io/"
+                                                  target="_blank">Max Ku</a><sup>♠️</sup>,
+                        </span>
+                        <span class="author-block">
+                                Ping Nie<sup>♢</sup>,
+                        </span>
+                        <span class="author-block">
+                                Minghao Liu<sup>♡</sup>,
+                        </span>
+                        <span class="author-block">
+                                  <sup>†</sup><a href="https://wenhuchen.github.io/" target="_blank">Wenhu Chen<sup>♠️</sup></a>
+                        </span>
+                    </div>
 
-                        <div class="is-size-5 publication-authors">
+                    <div class="is-size-5 publication-authors">
                             <span class="author-block">
-                    <sup>♠️</sup>University of Waterloo,
-                    <sup>†</sup>Ohio State University, 
-                    <sup>♣</sup>University of California, Santa Barbara, 
-                    <sup>♥</sup>University of Pensylvania, 
-                    <sup>♢</sup>Central South University
+                            <sup>♠️</sup>University of Waterloo,
+                            <sup>♣️</sup>Tsinghua Univerisity,
+                            <sup>♡</sup>2077AI,
+                            <sup>ϑ</sup>McGill University,
+                            <sup>♢</sup>Independent,
                             </span>
-                            <span class="author-block"><small>m3ku@uwaterloo.ca, t29li@uwaterloo.ca, zhang.13253@osu.edu, yujielu@ucsb.edu, xingyuf2@seas.upenn.edu, wwzhuang01@gmail.com, wenhuchen@uwaterloo.ca</small></span>
 
-                        </div>
+                            <br>
+                            <span class="author-block">Corresponding to:</span>
+                            <span class="author-block"><a href="mailto:wukeming0608@gmail.com">wukeming0608@gmail.com</a>,</span>
+                            <span class="author-block"><a href="mailto:wenhuchen@uwaterloo.ca">wenhuchen@uwaterloo.ca</a></span>
+<!--                        <span class="author-block">-->
+<!--                                <small>-->
+<!--                                    cong.wei@uwaterloo.ca,-->
+<!--                                    zxiong44@wisc.edu,-->
+<!--                                    w2ren@uwaterloo.ca,-->
+<!--                                    xinrun.du@bupt.edu.cn-->
+<!--                                    ge.zhang@uwaterloo.ca,-->
+<!--                                    wenhuchen@uwaterloo.ca-->
+<!--                                </small>-->
+<!--                            </span>-->
 
-                        <div class="column has-text-centered">
-                            <h2 class="title is-5">ICLR 2024</h2>
-                            <div class="publication-links">
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
                                 <span class="link-block">
-                          <a href="https://huggingface.co/ImagenHub" target="_blank"
-                          class="external-link button is-normal is-rounded is-dark">
-                          <span class="icon">
-                            🤗
-                          </span>
-                                <span>Dataset</span>
-                                </a>
+                                    <a href="https://arxiv.org/abs/2509.26346" target="_blank"
+                                       class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                          <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
                                 </span>
 
                                 <!-- Github link -->
                                 <span class="link-block">
-                      <a href="https://github.com/TIGER-AI-Lab/ImagenHub" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fab fa-github"></i>
-                      </span>
-                                <span>Code</span>
-                                </a>
+                                      <a href="https://github.com/TIGER-AI-Lab/EditReward" target="_blank"
+                                         class="external-link button is-normal is-rounded is-dark">
+                                      <span class="icon">
+                                        <i class="fab fa-github"></i>
+                                      </span>
+                                          <span>Code</span>
+                                      </a>
                                 </span>
 
                                 <span class="link-block">
-                                    <a href="https://imagenhub.readthedocs.io/en/latest/index.html" target="_blank"
-                                    class="external-link button is-normal is-rounded is-dark">
-                                              <span>📘 Docs</span>
-                                              </a>
-                                </span>
-
-                                <!-- ArXiv abstract Link -->
-                                <span class="link-block">
-                    <a href="https://arxiv.org/abs/2310.01596" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="ai ai-arxiv"></i>
-                      </span>
-                                <span>arXiv</span>
-                                </a>
-                                </span>
-
-                                <span class="link-block">
-                                    <a href="https://chromaica.github.io/#imagen-museum" target="_blank"
-                                    class="external-link button is-normal is-rounded is-dark">
-                                              <span>🖼️🏛️ Visualization</span>
-                                              </a>
-                                </span>
-                                
-                                <span class="link-block">
-                                    <a href="https://huggingface.co/spaces/TIGER-Lab/GenAI-Arena" target="_blank"
-                                    class="external-link button is-normal is-rounded is-dark">
-                                              <span>⚔️ GenAI-Arena</span>
-                                              </a>
-                                </span>
-                                
-                                <span class="link-block">
-                                    <a href="https://github.com/TIGER-AI-Lab/ImagenHub/issues/1" target="_blank"
-                                    class="external-link button is-normal is-rounded is-dark">
-                                              <span>👨‍💻 List of Supported Models</span>
-                                              </a>
-                                </span>
-
-                                <span class="link-block">
-                                    <a href="https://imagenhub.readthedocs.io/en/latest/Guidelines/custommodel.html" target="_blank"
-                                    class="external-link button is-normal is-rounded is-dark">
-                                              <span>📘 Contribution Guide</span>
-                                              </a>
-                                </span>
-
-                                <span class="link-block">
-                                    <a href="https://imagenhub.readthedocs.io/en/latest/Guidelines/humaneval.html" target="_blank"
-                                    class="external-link button is-normal is-rounded is-dark">
-                                              <span>📘 HumanEval Guidelines</span>
-                                              </a>
-                                </span>
-
-                                <span class="link-block">
-                                    <a href="https://iclr.cc/virtual/2024/poster/18726" target="_blank"
-                                    class="external-link button is-normal is-rounded is-dark">
-                                              <span>ICLR Slides and Poster</span>
+                                    <a href="https://huggingface.co/datasets/TIGER-Lab/EditReward-Data" target="_blank"
+                                       class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-database"></i>
+                                        </span>
+                                        <span>EditReward-Data</span>
                                     </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                  </span>
+
+                                  <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/TIGER-Lab/EditReward-Data" target="_blank"
+                                       class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                          🤗
+                                        </span>
+                                        <span>EditReward</span>
+                                    </a>
+                                  </span>
+
+                                  <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench" target="_blank"
+                                       class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            📊
+                                        </span>
+                                        <span>EditReward-Bench</span>
+                                    </a>
+                                  </span>
+
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h1 class="title is-3">EditReward</h1>
+            <div class="content has-text-justified">
+                <p>Our contribution is in three folds: </p>
+                <p>(1) We construct and release EditReward-Data, a large-scale (200K) preference dataset for image editing, distinguished by its high-quality manual annotations and diversity of sources.</p>
+                <p>(2) We train and release EditReward, a VLM-based reward model trained on EditReward-Data that demonstrates superior alignment with human preferences.</p>
+                <p>(3) We propose EditReward-Bench, a new benchmark featuring a more challenging multi-way preference ranking task that provides a more robust evaluation of reward models. </p>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Image carousel -->
+        <!-- Image carousel -->
     <section class="hero">
         <div class="hero-body">
             <div class="container is-max-desktop">
@@ -192,603 +178,152 @@
                     <div class="column is-full">
                         <div class="item">
                             <!-- Your image here -->
-                            <img src="static/images/ImagenHub_github.jpg" alt="ImagenHub" />
+                            <img src="static/images/pipeline.png" alt="OmniEdit" />
                             <h2 class="subtitle">
-                                Figure 1: The overview of ImagenHub framework, which consists of the newly curated ImagenHub
-                                dataset, ImagenHub library, and ImagenHub evaluation platform and standard.
+                                An overview of our framework, illustrating the construction of the <b>EditReward-Data</b> and the subsequent training of our reward model, <b>EditReward</b>. <b>Top:</b> The data pipeline, where we generate a diverse candidate pool from multiple state-of-the-art models and collect multi-dimensional human preference annotations. <b>Bottom:</b> The model pipeline, where EditReward is optimized on EditReward-Data using our proposed Multi-Dimensional Uncertainty-Aware Ranking Loss for training, followed by its use in inference.
                             </h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h1 class="title is-3">EditReward-Data</h1>
+              <div class="content has-text-justified">
+                <p>
+                  <b>EditReward-Data</b>, a large-scale (200K) preference dataset for image editing, distinguished by its high-quality manual annotations and diversity of sources.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+              <!-- Image carousel -->
+      <section class="hero">
+          <div class="hero-body">
+              <div class="container is-max-desktop">
+                  <div class="columns is-centered">
+                      <div class="column is-full">
+                          <div class="item">
+                              <!-- Your image here -->
+                              <img src="static/images/dataset_stat.png" alt="OmniEdit" />
+                              <h2 class="subtitle">
+                                  Our dataset has the most diverse, highest-quality image editing pairs of any resolution.
+                              </h2>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      
+    <section class="hero">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Experimental Results: Alignment with Humans</h2>
+              <div class="content has-text-justified">
+                <p>
+                    We evaluate our approach on a suite of three established public benchmarks and our newly proposed benchmark, designed to provide a more comprehensive assessment of image editing quality.
+                </p>
+                <div class="box m-5">
+                    <div class="content has-text-centered">
+                      <img src="static/images/main_results.png" alt="RL results" class="center" width="92%"/>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Application: <b>EditReward</b> as a Reward</h2>
+              <div class="content has-text-justified">
+                <p>
+                    To demonstrate <b>EditReward</b>'s practical utility as a data supervisor, we conducted a data curation experiment designed to improve a state-of-the-art editing model. We employed our reward model to score the ~46,000 examples in the ShareGPT-4o-Image dataset, from which we selected a high-quality subset of the top 20,000 samples. This curated dataset was then used to fine-tune the powerful Step1X-Edit model.
+                </p>
+                <div class="box m-5">
+                    <div class="content has-text-centered">
+                      <img src="static/images/application.png" alt="RL results" class="center" width="92%"/>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
     </section>
     <!-- End image carousel -->
 
+            <!-- Image carousel -->
 
-    <!-- Paper abstract -->
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container is-max-desktop">
-                <div class="columns is-centered">
-                    <div class="column has-text-centered">
-                        <h2 class="title is-3">Abstract</h2>
-                        <div class="content has-text-justified">
-                            <p>
-                                We introduce ImagenHub, a one-stop library to standardize the inference and evaluation of all the conditional image generation models. Firstly, we define seven prominent tasks and curate high-quality evaluation datasets for them. Secondly, we built a unified inference pipeline to ensure fair comparison. Thirdly, we design two human evaluation scores, i.e. Semantic Consistency and Perceptual Quality, along with comprehensive guidelines to evaluate generated images. We train expert raters to evaluate the model outputs based on the proposed metrics. Our human evaluation achieves a high inter-worker agreement of Krippendorff’s alpha on 76% models with a value higher than 0.4. We comprehensively evaluated a total of around 30 models and observed three key takeaways: (1) the existing models' performance is generally unsatisfying except for Text-guided Image Generation and Subject-driven Image Generation, with 74% models achieving an overall score lower than 0.5. (2) we examined the claims from published papers and found 83% of them hold with a few exceptions. (3) None of the existing automatic metrics has a Spearman’s correlation higher than 0.2 except subject-driven image generation. Moving forward, we will continue our efforts to evaluate newly published models and update our leaderboard to keep track of the progress in conditional image generation.
-                            </p>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End paper abstract -->
-
-
-    <section class="hero is-small">
-        <div class="hero-body">
-            <div class="container  is-max-desktop">
-                <div class="columns is-centered has-text-centered">
-                    <div class="column is-four-fifths">
-                        <h2 class="title is-3">Overall Results</h2>
-                        <div class="item">
-                            <!-- Your image here -->
-                            <img src="static/images/overall_results_v2.png" alt="MY ALT TEXT" />
-                            <h2 class="subtitle has-text-centered">
-                                Figure 2: The best and the average model performance in each task.
-                            </h2>
-                            <img src="static/images/task_performance_v2.png" alt="MY ALT TEXT" />
-                            <h2 class="subtitle has-text-centered">
-                                Figure 3: Model performance and standard deviation in each task.
-                            </h2>
-                            <p>
-                                
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="hero is-small">
-        <div class="hero-body">
-            <div class="container  is-max-desktop">
-                <div class="columns is-centered has-text-centered">
-                    <div class="column is-four-fifths">
-                        <h2 class="title is-3">How images are rated?</h2>
-                        <div class="item">
-                            <!-- Your image here -->
-                            <img src="static/images/task_overview.jpg" alt="MY ALT TEXT" />
-                            <h2 class="subtitle">
-                                Figure 4: The visualization of all the conditional image generation tasks. Here we consider tasks
-                                with 1-3 conditions, where ∅ means empty. The special token [V] and [M] are special identifiers.
-                            </h2>
-                            <p>
-                                To standardize the conduction of a rigorous human evaluation, we stipulate the criteria for each measurement as follows:
-                                        <ul style="list-style-type: disc;" class="has-text-left">
-                                            <li>
-                                                Semantic Consistency (SC), score in range [0, 0.5, 1]. It measures the level that the generated image is coherent in terms of the condition provided (i.e. Prompts, Subject Token, etc.).
-                                            </li>
-                                            <li>
-                                                Perceptual Quality (PQ), score in range [0, 0.5, 1]. It measures the level at which the generated image is visually convincing and gives off a natural sense.
-                                            </li>
-                                            <li>
-                                                Overall Human Score (O), equal to sqrt(SC x PQ).
-                                            </li>
-                                        </ul>
-                            </p>
-                            <img src="static/images/rating_guide.png" alt="MY ALT TEXT" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container is-max-desktop">
-                <div class="columns is-centered">
-                    <div class="column has-text-centered is-fifths-fifths">
-                        <h2 class="title is-3">Comprehensive Results</h2>
-                        <div class="content has-text-justified">
-                            <div class="buttonGroup">
-                                <button value="ALL">All</button>
-                                <button value="T2I">Text-Guided Image Generation</button>
-                                <button value="MIE">Mask-guided Image Editing</button>
-                                <button value="TIE">Text-guided Image Editing</button>
-                                <button value="SDIG">Subject-driven Image Generation</button>
-                                <button value="SDIE">Subject-driven Image Editing</button>
-                                <button value="MCIC">Multi-concept Image Composition</button>
-                                <button value="CIG">Control-guided Image Generation</button>
-                            </div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Model</th>
-                                        <th>SC<sub>Avg</sub></th>
-                                        <th>PQ<sub>Avg</sub></th>
-                                        <th>Overall(O)</th>
-                                        <th>Fleiss<sub>Ō</sub></th>
-                                        <th>Kd<sub>Ō</sub></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tabResults">
-                                    <tr class="th">
-                                        <td id="T2I" colspan="14" style="text-align: center; font-weight: bold;">Text-guided Image Generation Model</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dalle-3</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.79±0.02</td>
-                                        <td>0.79±0.14</td>
-                                        <td><strong>0.76±0.08</strong></td>
-                                        <td>0.19</td>
-                                        <td>-</td>
-                                        <td>0.34</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Midjourney</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.67±0.06</td>
-                                        <td>0.92±0.06</td>
-                                        <td>0.73±0.07</td>
-                                        <td>0.34</td>
-                                        <td>-</td>
-                                        <td>0.51</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DeepFloydIF</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.65±0.02</td>
-                                        <td>0.62±0.06</td>
-                                        <td>0.59±0.02</td>
-                                        <td>0.32</td>
-                                        <td>-</td>
-                                        <td>0.51</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stable Diffusion XL</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.62±0.03</td>
-                                        <td>0.64±0.05</td>
-                                        <td>0.59±0.03</td>
-                                        <td>0.37</td>
-                                        <td>-</td>
-                                        <td>0.61</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dalle-2</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.58±0.04</td>
-                                        <td>0.62±0.06</td>
-                                        <td>0.54±0.04</td>
-                                        <td>0.27</td>
-                                        <td>-</td>
-                                        <td>0.40</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>OpenJourney</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.53±0.02</td>
-                                        <td>0.59±0.05</td>
-                                        <td>0.50±0.02</td>
-                                        <td>0.30</td>
-                                        <td>-</td>
-                                        <td>0.47</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stable Diffusion 2.1</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.56±0.02</td>
-                                        <td>0.53±0.05</td>
-                                        <td>0.50±0.03</td>
-                                        <td>0.38</td>
-                                        <td>-</td>
-                                        <td>0.50</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr class="th">
-                                        <td id="MIE" colspan="14" style="text-align: center; font-weight: bold;">Mask-guided Image Editing Model</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SDXL-Inpainting</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.49±0.05</td>
-                                        <td>0.51±0.02</td>
-                                        <td><strong>0.37±0.05</strong></td>
-                                        <td>0.50</td>
-                                        <td>-</td>
-                                        <td>0.72</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SD-Inpainting</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.28±0.04</td>
-                                        <td>0.27±0.10</td>
-                                        <td>0.17±0.07</td>
-                                        <td>0.31</td>
-                                        <td>-</td>
-                                        <td>0.49</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>GLIDE</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.20±0.05</td>
-                                        <td>0.48±0.06</td>
-                                        <td>0.16±0.05</td>
-                                        <td>0.33</td>
-                                        <td>-</td>
-                                        <td>0.56</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>BlendedDiffusion</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.12±0.03</td>
-                                        <td>0.11±0.03</td>
-                                        <td>0.05±0.02</td>
-                                        <td>0.36</td>
-                                        <td>-</td>
-                                        <td>0.44</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr class="th">
-                                        <td id="TIE" colspan="14" style="text-align: center; font-weight: bold;">Text-guided Image Editing Model</td>
-                                    </tr>
-                                    <tr>
-                                        <td>MagicBrush</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.51±0.01</td>
-                                        <td> 0.65±0.06</td>
-                                        <td><strong>0.47±0.02</strong></td>
-                                        <td>0.44</td>
-                                        <td>-</td>
-                                        <td>0.67</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>InstructPix2Pix</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.29±0.01</td>
-                                        <td>0.70±0.06</td>
-                                        <td>0.27±0.02</td>
-                                        <td>0.55</td>
-                                        <td>-</td>
-                                        <td>0.74</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Prompt-to-prompt</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.17±0.05</td>
-                                        <td>0.55±0.09</td>
-                                        <td>0.15±0.06</td>
-                                        <td>0.36</td>
-                                        <td>-</td>
-                                        <td>0.53</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>CycleDiffusion</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.17±0.03</td>
-                                        <td>0.56±0.11</td>
-                                        <td>0.14±0.04</td>
-                                        <td>0.41</td>
-                                        <td>-</td>
-                                        <td>0.63</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SDEdit</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.04±0.03</td>
-                                        <td>0.56±0.12</td>
-                                        <td>0.04±0.03</td>
-                                        <td>0.13</td>
-                                        <td>-</td>
-                                        <td>0.13</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Text2Live</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.02±0.01</td>
-                                        <td>0.82±0.04</td>
-                                        <td>0.02±0.02</td>
-                                        <td>0.10</td>
-                                        <td>-</td>
-                                        <td>0.17</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DiffEdit</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.02±0.01</td>
-                                        <td>0.23±0.04</td>
-                                        <td>0.01±0.01</td>
-                                        <td>0.24</td>
-                                        <td>-</td>
-                                        <td>0.24</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pix2PixZero</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.01±0.00</td>
-                                        <td>0.48±0.09</td>
-                                        <td>0.01±0.01</td>
-                                        <td>0.37</td>
-                                        <td>-</td>
-                                        <td>0.37</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr class="th">
-                                        <td id="SDIG" colspan="14" style="text-align: center; font-weight: bold;">Subject-driven Image Generation Model</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SuTI</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.64±0.11</td>
-                                        <td>0.68±0.08</td>
-                                        <td><strong>0.58±0.12</strong></td>
-                                        <td>0.20</td>
-                                        <td>-</td>
-                                        <td>0.39</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DreamBooth</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.51±0.08</td>
-                                        <td>0.93±0.02</td>
-                                        <td>0.55±0.11</td>
-                                        <td>0.37</td>
-                                        <td>-</td>
-                                        <td>0.60</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>BLIP-Diffusion</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.29±0.04</td>
-                                        <td>0.93±0.04</td>
-                                        <td>0.35±0.06</td>
-                                        <td>0.22</td>
-                                        <td>-</td>
-                                        <td>0.39</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TextualInversion</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.21±0.04</td>
-                                        <td>0.74±0.08</td>
-                                        <td>0.21±0.05</td>
-                                        <td>0.35</td>
-                                        <td>-</td>
-                                        <td>0.52</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DreamBooth-Lora</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.07±0.01</td>
-                                        <td>0.82±0.07</td>
-                                        <td>0.09±0.01</td>
-                                        <td>0.29</td>
-                                        <td>-</td>
-                                        <td>0.37</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr class="th">
-                                        <td id="SDIE" colspan="14" style="text-align: center; font-weight: bold;">Subject-driven Image Editing Model</td>
-                                    </tr>
-                                    <tr>
-                                        <td>PhotoSwap</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.34±0.02</td>
-                                        <td>0.65±0.04</td>
-                                        <td><strong>0.36±0.02</strong></td>
-                                        <td>0.35</td>
-                                        <td>-</td>
-                                        <td>0.46</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DreamEdit</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.31±0.03</td>
-                                        <td>0.61±0.03</td>
-                                        <td>0.32±0.03</td>
-                                        <td>0.33</td>
-                                        <td>-</td>
-                                        <td>0.52</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>BLIP-Diffusion</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.09±0.03</td>
-                                        <td>0.70±0.02</td>
-                                        <td>0.09±0.03</td>
-                                        <td>0.41</td>
-                                        <td>-</td>
-                                        <td>0.47</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr class="th">
-                                        <td id="MCIC" colspan="14" style="text-align: center; font-weight: bold;">Multi-concept Image Composition Model</td>
-                                    </tr>
-                                    <tr>
-                                        <td>CustomDiffusion</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.26±0.01</td>
-                                        <td>0.86±0.05</td>
-                                        <td><strong>0.29±0.01</strong></td>
-                                        <td>0.73</td>
-                                        <td>-</td>
-                                        <td>0.88</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>DreamBooth</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.11±0.02</td>
-                                        <td>0.78±0.02</td>
-                                        <td>0.13±0.02</td>
-                                        <td>0.61</td>
-                                        <td>-</td>
-                                        <td>0.71</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>TextualInversion</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.04±0.01</td>
-                                        <td>0.74±0.05</td>
-                                        <td>0.05±0.01</td>
-                                        <td>0.62</td>
-                                        <td>-</td>
-                                        <td>0.77</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr class="th">
-                                        <td id="CIG" colspan="14" style="text-align: center; font-weight: bold;">Control-guided Image Generation Model</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ControlNet</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.42±0.05</td>
-                                        <td>0.19±0.04</td>
-                                        <td><strong>0.23±0.04</strong></td>
-                                        <td>0.37</td>
-                                        <td>-</td>
-                                        <td>0.57</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>UniControl</td>
-                                        <td>-</td>
-                                        <td>Unknown</td>
-                                        <td>0.38±0.07</td>
-                                        <td>0.20±0.06</td>
-                                        <td>0.23±0.07</td>
-                                        <td>0.36</td>
-                                        <td>-</td>
-                                        <td>0.58</td>
-                                        <td>-</td>
-                                    </tr>
-                        </div>
-                        </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-
+    </div>
+</section>
 
 
     <!-- BibTex citation -->
     <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">Citation</h2>
-            Please kindly cite our paper if you use our code, data, models or results:
+            If you find our paper useful, please cite us with:
             <br><br>
-            <pre><code>@inproceedings{
-            ku2024imagenhub,
-            title={ImagenHub: Standardizing the evaluation of conditional image generation models},
-            author={Max Ku and Tianle Li and Kai Zhang and Yujie Lu and Xingyu Fu and Wenwen Zhuang and Wenhu Chen},
-            booktitle={The Twelfth International Conference on Learning Representations},
-            year={2024},
-            url={https://openreview.net/forum?id=OuV9ZrkQlc}
-            }</code></pre>
+            <pre><code>
+<!-- @article{wei2024omniedit,
+  title={OmniEdit: Building Image Editing Generalist Models Through Specialist Supervision},
+  author={Wei, Cong and Xiong, Zheyang and Ren, Weiming and Du, Xinrun and Zhang, Ge and Chen, Wenhu},
+  journal={arXiv preprint arXiv:2411.07199},
+  year={2024}
+} -->
+</code></pre>
         </div>
     </section>
 
+<footer class="footer">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
 
-    <footer class="footer">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-8">
-                    <div class="content">
+                    <p>
+                        This page was built using the <a
+                            href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic
+                        Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io"
+                                                                                target="_blank">Nerfies</a> project
+                        page. You are free to borrow the of this website, we just ask that you link back to this page in
+                        the footer. <br> This website is licensed under a <a rel="license"
+                                                                             href="http://creativecommons.org/licenses/by-sa/4.0/"
+                                                                             target="_blank">Creative
+                        Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p>
 
-                        <p>
-                            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a>                            project page. You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"
-                                target="_blank">Creative
-              Commons Attribution-ShareAlike 4.0 International License</a>.
-                        </p>
-
-                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
 </body>
 <style>
     .buttonGroup {
         text-align: center;
     }
-    
-    .buttonGroup>button {
+
+    .buttonGroup > button {
         padding: 15px;
         color: white;
         background-color: #363636;
         border-radius: 5px;
     }
-    
-    .buttonGroup>button:hover {
+
+    .buttonGroup > button:hover {
         box-shadow: 5px;
     }
 </style>
