@@ -197,7 +197,7 @@ Please kindly cite our paper if you use our code, data, models or results:
 
 ## 🙏 Acknowledgements
 
-We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3) and [VideoAlign](https://github.com/KwaiVGI/VideoAlign) codebase for providing valuable references.
+We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3), [VideoAlign](https://github.com/KwaiVGI/VideoAlign) and [GenAI-Bench](https://github.com/TIGER-AI-Lab/GenAI-Bench) codebase for providing valuable references.
 
 ---
 ## ⭐ Star History [🔝](#-table-of-contents)
