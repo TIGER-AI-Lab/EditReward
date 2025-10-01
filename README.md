@@ -181,7 +181,15 @@ work in progress
 Please kindly cite our paper if you use our code, data, models or results:
 
 ```bibtex
-
+@misc{wu2025editrewardhumanalignedrewardmodel,
+      title={EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing}, 
+      author={Keming Wu and Sicong Jiang and Max Ku and Ping Nie and Minghao Liu and Wenhu Chen},
+      year={2025},
+      eprint={2509.26346},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.26346}, 
+}
 ```
 
 
