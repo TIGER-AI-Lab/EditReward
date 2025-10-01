@@ -7,10 +7,11 @@
 # EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing
 
 [![Project Website](https://img.shields.io/badge/🌐-Project%20Website-deepgray)](https://github.com/TIGER-AI-Lab/EditReward)
-[![arXiv](https://img.shields.io/badge/arXiv-2508.03789-b31b1b.svg)](https://arxiv.org/abs/2508.03789)
+[![arXiv](https://img.shields.io/badge/arXiv-2508.03789-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
 <!-- [![ICCV 2025](https://img.shields.io/badge/ICCV-2025-blue.svg)](https://arxiv.org/abs/2508.03789) -->
-[![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/MizzenAI/HPSv3)
-[![Dataset](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/MizzenAI/HPDv3)
+[![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/TIGER-Lab/EditReward)
+[![Dataset](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Data)
+[![Benchmark](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
 <!-- [![PyPI](https://img.shields.io/pypi/v/hpsv3)](https://pypi.org/project/hpsv3/) -->
 
 <!-- **Yuhang Ma**<sup>1,3*</sup>&ensp; **Yunhao Shui**<sup>1,4*</sup>&ensp; **Xiaoshi Wu**<sup>2</sup>&ensp; **Keqiang Sun**<sup>1,2†</sup>&ensp; **Hongsheng Li**<sup>2,5,6†</sup> -->
@@ -37,6 +38,13 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 ## 📰 News
 - **[2025-10-01]** 🎉 We release EditReward: inference code, training code and [EditReward model weights](https://huggingface.co/MizzenAI/HPSv3). And [PyPI Package](https://pypi.org/project/hpsv3/).
 
+<!-- TODO List -->
+## 🚧 TODO List
+- [ ] Release inference code and pretrained model
+- [ ] Release evaluation benchmark
+- [ ] Release training code
+- [ ] Release training dataset
+
 ## 📄 Table of Contents
 - [🛠️ Installation](#%EF%B8%8F-installation-)
 - [👨‍🏫 Get Started](#-get-started-)
@@ -50,7 +58,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 ## 🚀 Quick Start
 
-HPSv3 is a state-of-the-art human preference score model for evaluating image quality and prompt alignment. It builds upon the Qwen2-VL architecture to provide accurate assessments of generated images.
+EditReward is a VLM-based reward model trained on EditReward-Data that demonstrates superior alignment with human preferences.
 
 ### 💻 Installation
 
@@ -58,24 +66,23 @@ HPSv3 is a state-of-the-art human preference score model for evaluating image qu
 pip install hpsv3 -->
 
 ```bash
-# Method 1: Pypi download and install for inference.
-pip install hpsv3
 
-# Method 2: Install locally for development or training.
-git clone https://github.com/MizzenAI/HPSv3.git
-cd HPSv3
+git clone https://github.com/TIGER-AI-Lab/EditReward.git
+cd EditReward
 
-conda env create -f environment.yaml
-conda activate hpsv3
+conda create -n edit_reward python=3.10 -y
+conda activate edit_reward
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
+pip install datasets pillow openai -U megfile sentencepiece deepspeed fire omegaconf matplotlib peft trl==0.8.6 tensorboard scipy transformers==4.56.1 accelerate
 # Recommend: Install flash-attn
-pip install flash-attn==2.7.4.post1
+pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.2.post1/flash_attn-2.7.2.post1+cu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 
-pip install -e .
 ```
 
-### 🛠️ Basic Usage
 
-#### Simple Inference Example
+### 🚀 Usage
+
+#### Basic Command
 
 ```python
 from EditReward import EditRewardInferencer
@@ -98,29 +105,13 @@ print(f"Image scores: {scores}")
 
 ---
 
-## 🌐 Gradio Demo
-
-Launch an interactive web interface to test HPSv3:
-
-```bash
-python gradio_demo/demo.py
-```
-
-The demo will be available at `http://localhost:7860` and provides:
-
-<p align="left">
-  <img src="assets/gradio.png" alt="Gradio Demo" width="500"/>
-</p>
-
-
 
 ## 📁 Dataset
 
-### Human Preference Dataset v3
-
-Human Preference Dataset v3 (HPD v3) comprises 1.08M text-image pairs and 1.17M annotated pairwise data. To modeling the wide spectrum of human preference, we introduce newest state-of-the-art generative models and high quality real photographs while maintaining old models and lower quality real images.
+### EditReward-Data
+work in progress
 <p align="left">
-  <img src="assets/dataset_stat.pdf" alt="dataset" width="500"/>
+  <img src="assets/dataset_stat.png" alt="dataset" width="500"/>
 </p>
 <!-- <details close> -->
 
@@ -129,112 +120,23 @@ Human Preference Dataset v3 (HPD v3) comprises 1.08M text-image pairs and 1.17M 
 HPDv3 is comming soon! Stay tuned!
 ``` -->
 ```bash
-huggingface-cli download --repo-type dataset MizzenAI/HPDv3 --local-dir /your-local-dataset-path
-```
-
-### Pairwise Training Data Format
-
-**Important Note: For simplicity, path1's image is always the prefered one**
-
-#### All Annotated Pairs (`all.json`)
-
-**Important Notes: In HPDv3, we simply put the preferred sample at the first place (path1)**
-
-`all.json` contains **all** annotated pairs except for test.
-
-```bash
-[
-    # samples from HPDv3 annotation pipeline 
-    {
-    "prompt": "Description of the visual content or the generation prompt.",
-    "choice_dist": [12, 7],           # Distribution of votes from annotators (12 votes for image1, 7 votes for image2)
-    "confidence": 0.9999907,         # Confidence score reflecting preference reliability, based on annotators' capabilities (independent of choice_dist)
-    "path1": "images/uuid1.jpg",     # File path to the preferred image
-    "path2": "images/uuid2.jpg",     # File path to the non-preferred image
-    "model1": "flux",                # Model used to generate the preferred image (path1)
-    "model2": "infinity"             # Model used to generate the non-preferred image (path2)
-    },
-    # samples from Midjourney
-    {
-    "prompt": "Description of the visual content or the generation prompt.",
-    "choice_dist": null,             # No distribution of votes Information from Discord
-    "confidence": null,              # No Confidence Information from Discord
-    "path1": "images/uuid1.jpg",     # File path to the preferred image.
-    "path2": "images/uuid2.jpg",     # File path to the non-preferred image.
-    "model1": "midjourney",          # Comparsion between images generated from midjourney 
-    "model2": "midjourney"           # Comparsion between images generated from midjourney 
-    },
-    # samples from Curated HPDv2
-    {
-    "prompt": "Description of the visual content or the generation prompt.",
-    "choice_dist": null,              # No distribution of votes Information from the original HPDv2 traindataset
-    "confidence": null,               # No Confidence Information from the original HPDv2 traindataset
-    "path1": "images/uuid1.jpg",     # File path to the preferred image.
-    "path2": "images/uuid2.jpg",     # File path to the non-preferred image.
-    "model1": "hpdv2",          # No specific model name in the original HPDv2 traindataset, set to hpdv2 
-    "model2": "hpdv2"           # No specific model name in the original HPDv2 traindataset, set to hpdv2 
-    },
-]
-```
-
-#### Train set (`train.json`)
-We sample part of training data from `all.json` to build training dataset `train.json`. Moreover, to improve robustness, we integrate random sampled part of data from [Pick-a-pic](https://huggingface.co/datasets/pickapic-anonymous/pickapic_v1) and [ImageRewardDB](https://huggingface.co/datasets/zai-org/ImageRewardDB), which is `pickapic.json` and `imagereward.json`. For these two datasets, we only provide the pair infomation, and its corresponding image can be found in their official dataset repository.
-
-
-#### Test Set (`test.json`)
-```bash
-[
-    {
-        "prompt": "Description of the visual content",
-        "path1": "images/uuid1.jpg",     # Preferred sample
-        "path2": "images/uuid2.jpg",     # Unpreferred sample
-        "model1": "flux",                # Model used to generate the preferred sample (path1).
-        "model2": "infinity",            # Model used to generate the non-preferred sample (path2).
-
-    }
-]
+huggingface-cli download --repo-type dataset TIGER-Lab/EditReward-Data --local-dir /your-local-dataset-path
 ```
 
 ## 🏋️ Training
 
 ### 🚀 Training Command
 
+work in progress
+
 ```bash
-# Use Method 2 to install locally
-git clone https://github.com/MizzenAI/HPSv3.git
-cd HPSv3
-
-conda env create -f environment.yaml
-conda activate hpsv3
-# Recommend: Install flash-attn
-pip install flash-attn==2.7.4.post1
-
-pip install -e .
-
-# Train with 7B model
-deepspeed hpsv3/train.py --config hpsv3/config/HPSv3_7B.yaml
 ```
-
-<details close>
-<summary>Important Config Argument</summary>
-
-| Configuration Section | Parameter | Value | Description |
-|----------------------|-----------|-------|-------------|
-| **Model Configuration** | `rm_head_type` | `"ranknet"` | Type of reward model head architecture |
-| | `lora_enable` | `False` | Enable LoRA (Low-Rank Adaptation) for efficient fine-tuning. If `False`, language tower is fully trainable|
-| | `vision_lora` | `False` | Apply LoRA specifically to vision components. If `False`, vision tower is fully trainable|
-| | `model_name_or_path` | `"Qwen/Qwen2-VL-7B-Instruct"` | Path to the base model checkpoint |
-| **Data Configuration** | `confidence_threshold` | `0.95` | Minimum confidence score for training data |
-| | `train_json_list` | `[example_train.json]` | List of training data files |
-| | `test_json_list` | `[validation_sets]` | List of validation datasets with names |
-| | `output_dim` | `2` | Output dimension of the reward head for $\mu$ and $\sigma$|
-| | `loss_type` | `"uncertainty"` | Loss function type for training |
-</details>
 
 ---
 
 ## 📊 Benchmark
 To evaluate **EdiReward preference accuracy**, follow the detail instruction is in [Evaluate Insctruction](evaluate/README.md)
+work in progress
 
 <details open>
 <summary> Experimental Results: Alignment with Humans </summary>
@@ -283,12 +185,6 @@ To evaluate **EdiReward preference accuracy**, follow the detail instruction is 
 </details>
 
 ---
-
-
-### 🚀 Usage
-
-#### Basic Command
-
 
 
 ## 📚 Citation
