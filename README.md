@@ -198,5 +198,5 @@ We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3) and [Video
 ## 💬 Support
 
 For questions and support:
-- **Issues**: [GitHub Issues](https://github.com/MizzenAI/HPSv3/issues)
-- **Email**: yhshui@mizzen.ai & yhma@mizzen.ai
+- **Issues**: [GitHub Issues](https://github.com/TIGER-AI-Lab/EditReward/issues)
+- **Email**: wukeming0608@gmail.com & wenhuchen@uwaterloo.ca
