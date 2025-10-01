@@ -8,20 +8,9 @@
 
 [![Project Website](https://img.shields.io/badge/🌐-Project%20Website-deepgray)](https://github.com/TIGER-AI-Lab/EditReward)
 [![arXiv](https://img.shields.io/badge/arXiv-2508.03789-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
-<!-- [![ICCV 2025](https://img.shields.io/badge/ICCV-2025-blue.svg)](https://arxiv.org/abs/2508.03789) -->
 [![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/TIGER-Lab/EditReward)
 [![Dataset](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Data)
 [![Benchmark](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
-<!-- [![PyPI](https://img.shields.io/pypi/v/hpsv3)](https://pypi.org/project/hpsv3/) -->
-
-<!-- **Yuhang Ma**<sup>1,3*</sup>&ensp; **Yunhao Shui**<sup>1,4*</sup>&ensp; **Xiaoshi Wu**<sup>2</sup>&ensp; **Keqiang Sun**<sup>1,2†</sup>&ensp; **Hongsheng Li**<sup>2,5,6†</sup> -->
-
-<!-- <sup>1</sup>Mizzen AI&ensp;&ensp; <sup>2</sup>CUHK MMLab&ensp;&ensp; <sup>3</sup>King’s College London&ensp;&ensp; <sup>4</sup>Shanghai Jiaotong University&ensp;&ensp;  -->
-
-<!-- <sup>5</sup>Shanghai AI Laboratory&ensp;&ensp; <sup>6</sup>CPII, InnoHK&ensp;&ensp;  -->
-
-<!-- <sup>*</sup>Equal Contribution&ensp; <sup>†</sup>Equal Advising -->
-
 </div>
 
 
