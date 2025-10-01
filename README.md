@@ -7,7 +7,7 @@
 # EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing
 
 [![Project Website](https://img.shields.io/badge/🌐-Project%20Website-deepgray)](https://github.com/TIGER-AI-Lab/EditReward)
-[![arXiv](https://img.shields.io/badge/arXiv-2508.03789-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
+[![arXiv](https://img.shields.io/badge/arXiv-2509.26346-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
 [![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/TIGER-Lab/EditReward)
 [![Dataset](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Data)
 [![Benchmark](https://img.shields.io/badge/📊-Benchmark-yello)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
@@ -73,6 +73,7 @@ pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.
 
 #### Basic Command
 
+work in progress
 ```python
 from EditReward import EditRewardInferencer
 
@@ -80,15 +81,9 @@ from EditReward import EditRewardInferencer
 inferencer = EditRewardInferencer(device='cuda')
 
 # Evaluate images
-image_paths = ["assets/example1.png", "assets/example2.png"]
-prompts = [
-  "cute chibi anime cartoon fox, smiling wagging tail with a small cartoon heart above sticker",
-  "cute chibi anime cartoon fox, smiling wagging tail with a small cartoon heart above sticker"
-]
 
 # Get preference scores
-rewards = inferencer.reward(prompts, image_paths=image_paths)
-scores = [reward[0].item() for reward in rewards]  # Extract mu values
+
 print(f"Image scores: {scores}")
 ```
 
@@ -125,6 +120,7 @@ work in progress
 
 ## 📊 Benchmark
 To evaluate **EdiReward preference accuracy**, follow the detail instruction is in [Evaluate Insctruction](evaluate/README.md)
+
 work in progress
 
 <details open>
@@ -147,7 +143,7 @@ work in progress
 | MiMo-VL-7B-SFT-2508 | 57.89 | 30.43 | 22.14 | 31.19 |
 | ADIEE | 59.96 | 55.56 | 34.50 | -- |
 | ***Reward Models (Ours)*** | | | | |
-| EditReward (on Qwen2.5-VL-7B) | <u>63.97\</u> | <u>59.50</u> | 36.18 | 36.78 |
+| EditReward (on Qwen2.5-VL-7B) | <u>63.97</u> | <u>59.50</u> | 36.18 | 36.78 |
 | EditReward (on MiMo-VL-7B) | **65.72** | **63.62** | 35.20 | **38.42** |
 </details>
 
@@ -163,9 +159,9 @@ work in progress
 | Human-to-Human | -- | -- | -- | -- |
 | ***Proprietary Models*** | | | | |
 | GPT-4o | 45.69 | 27.33 | 7.31 | 28.31 |
-| GPT-5 | <u>57.53\</u> | 38.51 | <u>12.84\</u> | 37.81 |
+| GPT-5 | <u>57.53\</u> | 38.51 | <u>12.84</u> | 37.81 |
 | Gemini-2.0-Flash | 52.43 | 33.33 | **13.51** | 33.47 |
-| Gemini-2.5-Flash | **58.61** | <u>39.86\</u> | 12.16 | <u>38.02\</u> |
+| Gemini-2.5-Flash | **58.61** | <u>39.86</u> | 12.16 | <u>38.02</u> |
 | ***Open-Source VLMs*** | | | | |
 | Qwen2.5-VL-3B-Inst | 51.07 | 20.27 | 2.71 | 26.86 |
 | Qwen2.5-VL-7B-Inst | 52.69 | 24.67 | 3.38 | 29.75 |
