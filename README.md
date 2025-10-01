@@ -10,7 +10,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2508.03789-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
 [![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/TIGER-Lab/EditReward)
 [![Dataset](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Data)
-[![Benchmark](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
+[![Benchmark](https://img.shields.io/badge/📊-Benchmark-yello)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
 </div>
 
 
