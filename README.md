@@ -181,7 +181,15 @@ work in progress
 Please kindly cite our paper if you use our code, data, models or results:
 
 ```bibtex
-
+@misc{wu2025editrewardhumanalignedrewardmodel,
+      title={EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing}, 
+      author={Keming Wu and Sicong Jiang and Max Ku and Ping Nie and Minghao Liu and Wenhu Chen},
+      year={2025},
+      eprint={2509.26346},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.26346}, 
+}
 ```
 
 
@@ -189,7 +197,7 @@ Please kindly cite our paper if you use our code, data, models or results:
 
 ## 🙏 Acknowledgements
 
-We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3) and [VideoAlign](https://github.com/KwaiVGI/VideoAlign) codebase for providing valuable references.
+We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3), [VideoAlign](https://github.com/KwaiVGI/VideoAlign) and [GenAI-Bench](https://github.com/TIGER-AI-Lab/GenAI-Bench) codebase for providing valuable references.
 
 ---
 ## ⭐ Star History [🔝](#-table-of-contents)
