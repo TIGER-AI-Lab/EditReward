@@ -34,6 +34,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 - [ ] Release evaluation benchmark
 - [ ] Release training code
 - [ ] Release training dataset
+- [ ] Release better model
 
 ## 📄 Table of Contents
 - [🛠️ Installation](#%EF%B8%8F-installation-)
