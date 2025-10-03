@@ -32,7 +32,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 ## 🚧 TODO List
 - [x] Release inference code and pretrained model
 - [ ] Release evaluation benchmark
-- [ ] Release training code
+- [x] Release training code
 - [ ] Release training dataset
 - [ ] Release better model
 
