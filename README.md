@@ -25,6 +25,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 
 ## 📰 News
+- **[2025-10-03]** 🔥 Release inference code and pretrained model.
 - **[2025-10-01]** 🎉 We initialize the official repo of EditReward.
 
 <!-- TODO List -->
