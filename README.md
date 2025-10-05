@@ -10,8 +10,6 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2509.26346-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
 [![Model](https://img.shields.io/badge/🤗-Model-yellow)](https://huggingface.co/collections/TIGER-Lab/editreward-68ddf026ef9eb1510458abc6)
 [![Model](https://img.shields.io/badge/-Model-blue?logo=googledrive&logoColor=white)](https://drive.google.com/drive/folders/1BS-xR2bCCtdW8iTQzZ0EkiW1nrqVTmtA?usp=sharing)
-
-
 [![Dataset](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Data)
 [![Benchmark](https://img.shields.io/badge/📊-Benchmark-yello)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
 </div>
