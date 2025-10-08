@@ -26,7 +26,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 
 ## 📰 News
-- **[2025-10-08]** 🔥 Release our training dataset, Welcome to use!
+- **[2025-10-08]** 🔥 Release our training dataset EditReward-Data, Welcome to use!
 - **[2025-10-03]** 🔥 Release inference code and pretrained model.
 - **[2025-10-01]** 🎉 We initialize the official repo of EditReward.
 
@@ -265,14 +265,11 @@ work in progress
 Please kindly cite our paper if you use our code, data, models or results:
 
 ```bibtex
-@misc{wu2025editrewardhumanalignedrewardmodel,
-      title={EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing}, 
-      author={Keming Wu and Sicong Jiang and Max Ku and Ping Nie and Minghao Liu and Wenhu Chen},
-      year={2025},
-      eprint={2509.26346},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2509.26346}, 
+@article{wu2025editreward,
+  title={EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing},
+  author={Wu, Keming and Jiang, Sicong and Ku, Max and Nie, Ping and Liu, Minghao and Chen, Wenhu},
+  journal={arXiv preprint arXiv:2509.26346},
+  year={2025}
 }
 ```
 
