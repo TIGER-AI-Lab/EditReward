@@ -26,6 +26,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 
 ## 📰 News
+- **[2025-10-10]** 🔥 Release our evaluation benchmark EditReward-Bench, Welcome to use!
 - **[2025-10-08]** 🔥 Release our training dataset EditReward-Data, Welcome to use!
 - **[2025-10-03]** 🔥 Release inference code and pretrained model.
 - **[2025-10-01]** 🎉 We initialize the official repo of EditReward.
@@ -33,7 +34,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 <!-- TODO List -->
 ## 🚧 TODO List
 - [x] Release inference code and pretrained model
-- [ ] Release evaluation benchmark
+- [x] Release evaluation benchmark
 - [x] Release training code
 - [x] Release training dataset
 - [ ] Release better model
