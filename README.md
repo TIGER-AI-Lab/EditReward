@@ -206,8 +206,6 @@ work in progress
 ## 📊 Benchmark
 To evaluate **EdiReward preference accuracy**, follow the detail instruction is in [Evaluate Insctruction](evaluate/README.md)
 
-work in progress
-
 <details open>
 
 <summary> Experimental Results: Alignment with Humans </summary>
