@@ -178,7 +178,6 @@ if __name__ == "__main__":
 ## 📁 Dataset
 
 ### EditReward-Data
-work in progress
 <p align="left">
   <img src="assets/dataset_stat.png" alt="dataset" width="900"/>
 </p>
@@ -205,6 +204,8 @@ work in progress
 
 ## 📊 Benchmark
 To evaluate **EdiReward preference accuracy**, follow the detail instruction is in [Evaluate Insctruction](evaluate/README.md)
+
+work in progress
 
 <details open>
 
