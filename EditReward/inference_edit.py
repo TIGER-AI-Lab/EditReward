@@ -85,24 +85,22 @@ class EditRewardInferencer:
         self.reward_dim = reward_dim
         self.rm_head_type = rm_head_type
 
-        # === 加载 checkpoint ===
+        # === Load checkpoint ===
+        # use below two checkpoint files to load the model
         full_ckpt = os.path.join(checkpoint_path, "model.pth")
-        lora_ckpt = os.path.join(checkpoint_path, "adapter_model.safetensors")
-        non_lora_ckpt = os.path.join(checkpoint_path, "non_lora_state_dict.pth")
+        full_ckpt_safetensors = os.path.join(checkpoint_path, "model.safetensors")
 
         if os.path.exists(full_ckpt):
-            model_state_dict = torch.load(full_ckpt, map_location="cpu")
-            model.load_state_dict(model_state_dict)
+            state_dict = torch.load(full_ckpt, map_location="cpu")
+        elif os.path.exists(full_ckpt_safetensors):
+            import safetensors.torch
+            state_dict = safetensors.torch.load_file(full_ckpt_safetensors, device="cpu")
         else:
-            lora_state_dict = safetensors.torch.load_file(lora_ckpt)
-            non_lora_state_dict = torch.load(non_lora_ckpt, map_location="cpu")
-            lora_state_dict = _insert_adapter_name_into_state_dict(
-                lora_state_dict, adapter_name="default", parameter_prefix="lora_"
-            )
-            model_state_dict = model.state_dict()
-            # model_state_dict.update(non_lora_state_dict)
-            # model_state_dict.update(lora_state_dict)
-            model.load_state_dict(model_state_dict, strict=True)
+            raise ValueError(f"Checkpoint not found at {checkpoint_path}")
+
+        if "model" in state_dict:
+            state_dict = state_dict["model"]
+        model.load_state_dict(state_dict, strict=True)
 
         model.eval()
         self.model = model
