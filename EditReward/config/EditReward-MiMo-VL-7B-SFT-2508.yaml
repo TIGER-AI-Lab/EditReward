@@ -7,8 +7,7 @@ vision_lora: False
 freeze_vision_tower: False
 freeze_llm: False
 tune_merger: True                     
-# model_name_or_path: "MiMo-VL-7B-SFT-2508"
-model_name_or_path: "/pfs/training-data/kemingwu/hf_cache/models/MiMo-VL-7B-SFT-2508"
+model_name_or_path: "XiaomiMiMo/MiMo-VL-7B-SFT-2508"
 num_lora_modules: -1
 lora_r: 512
 lora_alpha: 1024
