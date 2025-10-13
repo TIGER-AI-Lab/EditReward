@@ -36,7 +36,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 - [x] Release evaluation benchmark
 - [x] Release training code
 - [x] Release training dataset
-- [ ] Release better model
+<!-- - [ ] Release better model -->
 
 ## 📄 Table of Contents
 - [🛠️ Installation](#%EF%B8%8F-installation-)
@@ -194,17 +194,12 @@ huggingface-cli download --repo-type dataset TIGER-Lab/EditReward-Data --local-d
 
 ### 🚀 Training Command
 
-work in progress
-
-```bash
-```
+To train **EditReward** model, follow the detail instruction in [Training Insctruction](EditReward/TRAIN_README.md)
 
 ---
 
 ## 📊 Benchmark
-To evaluate **EdiReward preference accuracy**, follow the detail instruction is in [Evaluate Insctruction](evaluate/README.md)
-
-work in progress
+To evaluate **EditReward preference accuracy**, follow the detail instruction in [Evaluate Insctruction](EditReward/EVAL_README.md)
 
 <details open>
 
