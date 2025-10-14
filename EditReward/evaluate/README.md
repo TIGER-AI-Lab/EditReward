@@ -235,7 +235,7 @@ This shows:
 
 ## 📚 Citation
 
-If you use this evaluation suite, please cite the original paper:
+If you use this evaluation suite, please cite our paper:
 
 ```bibtex
 @article{wu2025editreward,
