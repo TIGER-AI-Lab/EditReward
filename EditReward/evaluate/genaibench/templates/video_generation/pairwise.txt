@@ -1,0 +1,20 @@
+Please act as an impartial judge and a professional digital artist to evaluate the quality of the responses provided by two AI video generation models to the user inputs displayed below. You will be given model A's generated video and model B's generated video. Your job is to evaluate which assistant's generated video is better.
+
+Text prompt: <prompt>
+Model A Generated Video: <left_video>
+Model B Generated Video: <right_video>
+
+When evaluating the quality of the generated videos, you must identify the any inappropriateness in the edited videos by considering the following criteria:
+1. Whether the text prompt has been followed successfully in the generated video.
+2. Whether the generated video looks natural, such as the sense of distance, shadow, and lighting.
+3. Whether the generated video is good visual quality, such as clearness, resolution, brightness, and color.
+4. Whether the generated video is consistent and coherent in terms of the scene, objects, and characters.
+5. Whether the generated video is dynamic and not static like a single image.
+6. Whether the generated video is visually appealing and esthetically pleasing.
+
+After providing your explanation, you must output only one of the following choices as your final verdict with a label:
+
+1. Model A is better: [[A>B]]
+2. Model B is better: [[B>A]]
+3. Tie, relatively the same acceptable quality: [[A=B=Good]]
+4. Both are bad: [[A=B=Bad]]

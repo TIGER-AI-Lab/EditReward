@@ -25,6 +25,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 
 ## 📰 News
+- **[2025-10-14]** 🔥 Release the evaluation code and guideline of EditReward-Bench, see [Evaluate Insctruction](EditReward/evaluate/README.md)!
 - **[2025-10-10]** 🔥 Release our evaluation benchmark EditReward-Bench, Welcome to use!
 - **[2025-10-08]** 🔥 Release our training dataset EditReward-Data, Welcome to use!
 - **[2025-10-03]** 🔥 Release inference code and pretrained model.
@@ -199,7 +200,7 @@ To train **EditReward** model, follow the detail instruction in [Training Insctr
 ---
 
 ## 📊 Benchmark
-To evaluate **EditReward preference accuracy**, follow the detail instruction in [Evaluate Insctruction](EditReward/EVAL_README.md)
+To evaluate **EditReward preference accuracy**, follow the detail instruction in [Evaluate Insctruction](EditReward/evaluate/README.md)
 
 <details open>
 

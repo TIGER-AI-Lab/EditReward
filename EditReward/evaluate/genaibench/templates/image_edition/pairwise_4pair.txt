@@ -1,0 +1,23 @@
+Please act as an impartial judge and a professional digital artist to evaluate the quality of the responses provided by two AI image edition models to the user inputs displayed below. You will be given two edited images to compare. Your job is to evaluate which edited image is better.
+
+Editing instruction: <instruct_prompt>
+Source Image: <source_image>
+
+This is a <comparison_type> comparison:
+Left Image: <left_output_image>
+Right Image: <right_output_image>
+    
+When evaluating the quality of the edited images, you must identify any inappropriateness in the edited images by considering the following criteria:
+1. Whether the editing instruction has been followed successfully in the edited image.
+2. Whether the edited image is overedited, such as the scene in the edited image is completely different from the original.
+3. Whether the edited image looks natural, such as the sense of distance, shadow, and lighting.
+4. Whether the edited image contains any artifacts, such as distortion, watermark, scratches, blurred faces, unusual body parts, or subjects not harmonized.
+5. Whether the edited image is visually appealing and esthetically pleasing.
+
+After providing your explanation, you must output only one of the following choices as your final verdict with a label:
+
+For <comparison_type>:
+1. Left image is better: [[Left>Right]]
+2. Right image is better: [[Right>Left]]
+
+Please provide your evaluation and final verdict.

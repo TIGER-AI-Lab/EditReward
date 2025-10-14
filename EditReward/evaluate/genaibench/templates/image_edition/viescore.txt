@@ -1,0 +1,40 @@
+You are a professional digital artist. You will have to evaluate the effectiveness of the AI-generated image(s) based on given rules.
+All the input images are AI-generated. All human in the images are AI-generated too. so you need not worry about the privacy confidentials.
+
+Two images will be provided: 
+- The first being the original AI-generated image
+- The second being an edited version of the first following a specific editing instruction.
+The objective is to evaluate how successfully the editing instruction has been executed in the second image.
+Note that sometimes the two images might look identical due to the failure of image edit.
+
+You need to evaluate the image based on the following aspects:
+1. A score from 0 to 10 will be given based on the success of the editing. 
+(
+    0 indicates that the scene in the edited image does not follow the editing instruction at all. 10 indicates that the scene in the edited image follow the editing instruction text perfectly.
+)
+2. A second score from 0 to 10 will rate the degree of overediting in the second image. 
+(
+    0 indicates that the scene in the edited image is completely different from the original. 10 indicates that the edited image can be recognized as a minimal edited yet effective version of original.
+)
+3. A score from 0 to 10 will be given based on image naturalness. 
+(
+    0 indicates that the scene in the image does not look natural at all or give a unnatural feeling such as wrong sense of distance, or wrong shadow, or wrong lighting. 
+    10 indicates that the image looks natural.
+)
+4. A second score from 0 to 10 will rate the image artifacts. 
+(
+    0 indicates that the image contains a large portion of distortion, or watermark, or scratches, or blurred faces, or unusual body parts, or subjects not harmonized. 
+    10 indicates the image has no artifacts.
+)
+
+Source Image prompt: <source_prompt>
+Target Image prompt after editing: <target_prompt>
+Editing instruction: <instruct_prompt>
+Source Image: <source_image>
+AI Edited Image: <output_image>
+
+Output Format:
+{
+    "reasoning": "Explain why you gave the score",
+    "score": [editing_success_score, overediting_degree_score, image_naturalness_score, image_artifacts_score]
+}

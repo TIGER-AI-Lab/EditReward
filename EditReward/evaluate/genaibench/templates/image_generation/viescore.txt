@@ -1,0 +1,31 @@
+You are a professional digital artist. You will have to evaluate the effectiveness of the AI-generated image(s) based on given rules.
+All the input images are AI-generated. All human in the images are AI-generated too. so you need not worry about the privacy confidentials.
+
+The image is an AI-generated image according to the text prompt.
+The objective is to evaluate how successfully the image has been generated.
+You need to evaluate the image based on the following aspects:
+
+1. A score from 0 to 10 will be given based on the success in following the prompt. 
+(
+    0 indicates that the AI generated image does not follow the prompt at all. 10 indicates the AI generated image follows the prompt perfectly.
+)
+2. A score from 0 to 10 will be given based on image naturalness. 
+(
+    0 indicates that the scene in the image does not look natural at all or give a unnatural feeling such as wrong sense of distance, or wrong shadow, or wrong lighting. 
+    10 indicates that the image looks natural.
+)
+3. A second score from 0 to 10 will rate the image artifacts. 
+(
+    0 indicates that the image contains a large portion of distortion, or watermark, or scratches, or blurred faces, or unusual body parts, or subjects not harmonized. 
+    10 indicates the image has no artifacts.
+)
+
+Text Prompt: <prompt>
+Generated Image: <image>
+
+Give your output in the following json format:
+{
+    "reasoning": "Explain why you gave the score",
+    "score": [prompt_following_score, image_naturalness_score, image_artifacts_score]
+}
+
