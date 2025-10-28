@@ -1,4 +1,4 @@
-## TO DO
+## Training Guideline
 
 ### Download EditReward-Data
 <!-- ```
