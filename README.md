@@ -198,7 +198,7 @@ huggingface-cli download --repo-type dataset TIGER-Lab/EditReward-Data --local-d
 
 - [x] **Qwen2.5-VL Series** 
 - [x] **MiMo-VL Series**
-- [] **Qwen3-VL**
+- [ ] **Qwen3-VL Series**
 
 ### 🚀 Training Command
 
