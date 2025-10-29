@@ -1,5 +1,11 @@
 ## Training Guideline
 
+### 🤖 Model Support
+
+- [x] **Qwen2.5-VL Series** 
+- [x] **MiMo-VL Series**
+- [ ] **Qwen3-VL Series**
+
 ### Download EditReward-Data
 <!-- ```
 HPDv3 is comming soon! Stay tuned!
