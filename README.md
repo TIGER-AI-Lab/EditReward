@@ -194,6 +194,12 @@ huggingface-cli download --repo-type dataset TIGER-Lab/EditReward-Data --local-d
 
 ## 🏋️ Training
 
+### 🤖 Model Support
+
+- [x] **Qwen2.5-VL Series** 
+- [x] **MiMo-VL Series**
+- [] **Qwen3-VL**
+
 ### 🚀 Training Command
 
 To train **EditReward** model, follow the detail instruction in [Training Insctruction](EditReward/TRAIN_README.md)
