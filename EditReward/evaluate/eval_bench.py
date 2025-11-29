@@ -11,7 +11,6 @@ from itertools import combinations
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from EditReward import EditRewardInferencer
-# from .calc_accuracy import calc_accuracy_with_ties, calc_accuracy_without_ties
 
 def suff_stats(h, m, epsilon):
     """
@@ -71,7 +70,6 @@ def calc_accuracy_with_ties(h, m):
         current_stat = {
             'C': C, 'D': D, 'Th': Th, 'Tm': Tm, 'Thm': Thm
         }
-        # print(current_thresholds)
         for hi, mi in sorted_pairs:
             # update the statistics by removing the current pair
             if hi == 0 and abs(mi) < epsilon_curr:
@@ -106,8 +104,6 @@ def calc_accuracy_with_ties(h, m):
             if acc_curr > acc_star:
                 acc_star = acc_curr
                 epsilon_star = epsilon_curr
-            # print(current_thresholds)
-        # print("epsilon_star:", epsilon_star)
         return acc_star
     except Exception as e:
         print("Error in tie_calibration:", e)
@@ -126,7 +122,7 @@ def calc_accuracy_without_ties(h, m):
     return C / (C + D + Tm)
 
 def evaluate_imagenhub_from_json(json_path, inferencer, log_file, json_out_path):
-    # 读取数据
+    # Load data
     with open(json_path, "r") as f:
         dataset = json.load(f)
 
@@ -134,19 +130,19 @@ def evaluate_imagenhub_from_json(json_path, inferencer, log_file, json_out_path)
 
     for idx, item in enumerate(tqdm(dataset, desc="Evaluating ImagenHub")):
         prompt = item["instruction"]
-        image_src = [item["input_path"]]       # 单张原图
-        image_paths = [item["output_path"]]         # 单张生成图
+        image_src = [item["input_path"]]
+        image_paths = [item["output_path"]]
         prompts = [prompt]
 
-        # 模型打分
+        # Model scoring
         with torch.no_grad():
             rewards = inferencer.reward(
                 prompts=prompts,
                 image_src=image_src,
                 image_paths=image_paths
             )
-        pred_score = rewards[0][0].item()   # 模型预测
-        gt_score = item["score"]            # 人类评分
+        pred_score = rewards[0][0].item()
+        gt_score = item["score"]
         model_name = item.get("model", "unknown")
 
         score_dict[model_name].append({
@@ -160,7 +156,7 @@ def evaluate_imagenhub_from_json(json_path, inferencer, log_file, json_out_path)
         torch.cuda.empty_cache()
         gc.collect()
 
-        # === 日志输出 ===
+        # === Logging ===
         log_text = (
             f"\n--- ImagenHub Sample {idx+1} ---\n"
             f"Prompt: {prompt}\n"
@@ -189,12 +185,11 @@ def evaluate_imagenhub_from_json(json_path, inferencer, log_file, json_out_path)
     # Averages a list of Fisher Z-transformed correlation scores and converts it back to a correlation coefficient
     z_avg = sum(z_score_list) / len(z_score_list)
     r_avg = (math.exp(2 * z_avg) - 1) / (math.exp(2 * z_avg) + 1)
-    # r_avg = sum(z_score_list) / len(z_score_list) if z_score_list else 0.0
     final_text = f"[ImagenHub] Average Spearman Correlation = {r_avg:.4f}\n"
     print(final_text)
     log_file.write(final_text)
 
-    # 保存 JSON 文件
+    # Save JSON file
     spearman_results["average"] = r_avg
     with open(json_out_path, "w", encoding="utf-8") as f:
         json.dump(spearman_results, f, indent=2, ensure_ascii=False)
@@ -204,9 +199,9 @@ def evaluate_imagenhub_from_json(json_path, inferencer, log_file, json_out_path)
 
 def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_path):
     """
-    修改后的评估函数，按 prompt 分组，并使用两种更鲁棒的 Spearman 相关性计算方法。
+    Improved evaluation function that groups by prompt and uses two more robust Spearman correlation calculation methods.
     """
-    # 1. 读取数据并按 prompt 进行分组
+    # 1. Load data and group by prompt
     with open(json_path, "r") as f:
         dataset = json.load(f)
 
@@ -215,8 +210,8 @@ def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_pa
     for idx, item in enumerate(tqdm(dataset, desc="Evaluating ImagenHub")):
         prompt = item["instruction"]
         
-        # 将数据聚合到 prompt_grouped_scores 字典中
-        # 稍后统一进行模型推理，以提高效率
+        # Aggregate data into prompt_grouped_scores dictionary
+        # Will perform model inference later for efficiency
         prompt_grouped_scores[prompt].append({
             "gt_score": item["score"],
             "model_name": item.get("model", "unknown"),
@@ -225,24 +220,24 @@ def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_pa
             "filename": item.get("filename", f"sample_{idx}")
         })
 
-    # 2. 对每个 prompt 内的数据进行模型打分
+    # 2. Score each prompt group
     print("\nStep 2/3: Calculating scores for each prompt group...")
     for prompt, items in tqdm(prompt_grouped_scores.items(), desc="Scoring prompts"):
         for item in items:
-            # 模型打分
+            # Model scoring
             with torch.no_grad():
                 rewards = inferencer.reward(
                     prompts=[prompt],
                     image_src=item["image_src"],
                     image_paths=item["image_paths"]
                 )
-            item["pred_score"] = rewards[0][0].item() # 将预测分数存回字典
+            item["pred_score"] = rewards[0][0].item()
 
             del rewards
             torch.cuda.empty_cache()
             gc.collect()
 
-            # === 日志输出 (可选，但有助于调试) ===
+            # === Logging (optional, but helpful for debugging) ===
             log_text = (
                 f"\n--- Prompt: {prompt} | Model: {item['model_name']} ---\n"
                 f"GT Score: {item['gt_score']:.4f}, Pred Score: {item['pred_score']:.4f}\n"
@@ -250,7 +245,7 @@ def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_pa
             log_file.write(log_text)
             log_file.flush()
 
-    # 3. 计算两种新的 Spearman 相关性指标
+    # 3. Calculate two improved Spearman correlation metrics
     print("\nStep 3/3: Calculating improved Spearman correlations...")
     per_prompt_spearmans = []
     all_gt_scores = []
@@ -258,22 +253,22 @@ def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_pa
 
     for prompt, items in prompt_grouped_scores.items():
         if len(items) < 2:
-            continue  # 无法计算相关性
+            continue
 
         gt_list = [x['gt_score'] for x in items]
         pred_list = [x['pred_score'] for x in items]
 
-        # === 计算指标1: 平均 Per-Prompt Spearman 相关性 ===
+        # === Metric 1: Average Per-Prompt Spearman Correlation ===
         r_prompt, _ = spearmanr(pred_list, gt_list)
-        if not np.isnan(r_prompt):  # 如果标准差为0，spearmanr会返回nan
+        if not np.isnan(r_prompt):
             per_prompt_spearmans.append(r_prompt)
 
-        # === 计算指标2: 全局 Z-Score 归一化 Spearman 相关性 ===
-        # 对当前 prompt 的 pred_list 进行 Z-Score 归一化
+        # === Metric 2: Global Z-Score Normalized Spearman Correlation ===
+        # Z-Score normalize pred_list for current prompt
         mean_pred = np.mean(pred_list)
         std_pred = np.std(pred_list)
         
-        if std_pred > 1e-6: # 避免除以零
+        if std_pred > 1e-6:
             normalized_preds = [(s - mean_pred) / std_pred for s in pred_list]
         else:
             normalized_preds = [0.0] * len(pred_list)
@@ -281,16 +276,16 @@ def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_pa
         all_gt_scores.extend(gt_list)
         all_normalized_pred_scores.extend(normalized_preds)
 
-    # --- 计算最终结果 ---
-    # 指标1的最终值
+    # --- Calculate final results ---
+    # Final value for metric 1
     avg_per_prompt_spearman = np.mean(per_prompt_spearmans) if per_prompt_spearmans else 0.0
     
-    # 指标2的最终值
+    # Final value for metric 2
     overall_zscore_spearman, _ = spearmanr(all_normalized_pred_scores, all_gt_scores)
     if np.isnan(overall_zscore_spearman):
         overall_zscore_spearman = 0.0
 
-    # --- 结果汇总与保存 ---
+    # --- Aggregate and save results ---
     final_text = (
         f"\n====== [ImagenHub] Final Results ======\n"
         f"Total Prompts Evaluated: {len(per_prompt_spearmans)} / {len(prompt_grouped_scores)}\n"
@@ -300,7 +295,7 @@ def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_pa
     print(final_text)
     log_file.write(final_text)
     
-    # 保存 JSON 文件
+    # Save JSON file
     spearman_results = {
         "avg_per_prompt_spearman": avg_per_prompt_spearman,
         "overall_zscore_spearman": overall_zscore_spearman,
@@ -312,11 +307,11 @@ def evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_pa
 
     print(f"Spearman results saved to {json_out_path}")
     
-    # 返回一个主要指标，例如更鲁棒的 Z-Score Spearman
+    # Return a primary metric, e.g., the more robust Z-Score Spearman
     return overall_zscore_spearman
 
 def evaluate_aurora_from_json_pointwise(json_path, inferencer, log_file, json_out_path):
-    # 读取数据
+    # Load data
     with open(json_path, "r") as f:
         dataset = json.load(f)
 
@@ -324,18 +319,18 @@ def evaluate_aurora_from_json_pointwise(json_path, inferencer, log_file, json_ou
 
     for idx, item in enumerate(tqdm(dataset, desc="Evaluating Aurora-Pointwise")):
         prompt = item["prompt"]
-        image_src = [item["input"]]       # 单张原图
-        image_paths = [item["gen"]]         # 单张生成图
+        image_src = [item["input"]]
+        image_paths = [item["gen"]]
         prompts = [prompt]
 
-        # 模型打分
+        # Model scoring
         rewards = inferencer.reward(
             prompts=prompts,
             image_src=image_src,
             image_paths=image_paths
         )
-        pred_score = rewards[0][0].item()   # 模型预测
-        gt_score = item["score"]            # 人类评分
+        pred_score = rewards[0][0].item()
+        gt_score = item["score"]
         model_name = item.get("model", "unknown")
 
         score_dict[model_name].append({
@@ -345,7 +340,7 @@ def evaluate_aurora_from_json_pointwise(json_path, inferencer, log_file, json_ou
             "pred": pred_score,
         })
 
-        # === 日志输出 ===
+        # === Logging ===
         log_text = (
             f"\n--- Aurora-Pointwise Sample {idx+1} ---\n"
             f"Prompt: {prompt}\n"
@@ -356,7 +351,7 @@ def evaluate_aurora_from_json_pointwise(json_path, inferencer, log_file, json_ou
         log_file.write(log_text)
         log_file.flush()
 
-    # ===== 计算相关性 =====
+    # ===== Calculate correlation =====
     spearman_results = {}
     z_score_list = []
     for model, gt_pred_list in score_dict.items():
@@ -371,13 +366,13 @@ def evaluate_aurora_from_json_pointwise(json_path, inferencer, log_file, json_ou
         spearman_results[model] = r
         z_score_list.append(r)
 
-    # 平均 Spearman
+    # Average Spearman
     r_avg = sum(z_score_list) / len(z_score_list) if z_score_list else 0.0
     final_text = f"[Aurora-Pointwise] Average Spearman Correlation = {r_avg:.4f}\n"
     print(final_text)
     log_file.write(final_text)
 
-    # 保存 JSON 文件
+    # Save JSON file
     spearman_results["average"] = r_avg
     with open(json_out_path, "w", encoding="utf-8") as f:
         json.dump(spearman_results, f, indent=2, ensure_ascii=False)
@@ -387,22 +382,22 @@ def evaluate_aurora_from_json_pointwise(json_path, inferencer, log_file, json_ou
 
 def get_pairwise_gt(human_vote, i, j):
     """
-    REVISED: Determines ground truth for a pair (i, j) by parsing the preference string.
+    Determines ground truth for a pair (i, j) by parsing the preference string.
     - i, j: 0-based indices of the images being compared.
     - Maps indices to letters (0->'A', 1->'B', ...).
     - Parses preference strings like "A>B", "A=B=Good", "A>B>C".
     Returns: 1 if i > j, -1 if j > i, 0 for a tie.
     """
-    pref_key = "ranking" # Assume this is the key, add fallbacks if needed
+    pref_key = "ranking"
     if pref_key not in human_vote:
-        return 0 # Cannot determine preference
+        return 0
 
     pref_str = human_vote[pref_key]
 
     # Handle 2-pair specific labels first
     if pref_str == "A>B":
         return 1
-    if pref_str in ["B>A", "A<B"]:  # Now correctly handles both B>A and A<B
+    if pref_str in ["B>A", "A<B"]:
         return -1
     if pref_str in ["A=B=Good", "A=B=Bad"]:
         return 0
@@ -419,19 +414,16 @@ def get_pairwise_gt(human_vote, i, j):
             return 0
         
         if pos_i < pos_j:
-            return 1 # i is ranked higher than j
+            return 1
         else:
-            return -1 # j is ranked higher than i
+            return -1
     except Exception:
         return 0
 
-import numpy as np # Make sure to have numpy imported
-from itertools import combinations
-# ... (keep all your other functions like suff_stats, calc_accuracy_with_ties, etc.) ...
 def get_gt_ranking(human_vote, num_images):
     """
-    REVISED: Parses the human_vote string to get the ground-truth ranking.
-    - For 2-pair ties ("A=B=Good", "A=B=Bad"), it now returns the special string "tie".
+    Parses the human_vote string to get the ground-truth ranking.
+    - For 2-pair ties ("A=B=Good", "A=B=Bad"), it returns the special string "tie".
     - For strict rankings, it returns a tuple of indices, e.g., (2, 0, 1) for "C>A>B".
     - Returns None only if the ranking string is malformed.
     """
@@ -441,24 +433,24 @@ def get_gt_ranking(human_vote, num_images):
 
     pref_str = human_vote[pref_key]
 
-    # --- MODIFIED SECTION ---
     # Handle 2-pair cases, returning "tie" for tie labels
     if pref_str in ["A=B=Good", "A=B=Bad"]:
         return "tie"
-    if pref_str == "A>B": return (0, 1)
-    if pref_str in ["B>A", "A<B"]: return (1, 0)
-    # --- END MODIFIED SECTION ---
+    if pref_str == "A>B":
+        return (0, 1)
+    if pref_str in ["B>A", "A<B"]:
+        return (1, 0)
     
     # General N-pair ranking strings (e.g., "C>A>B")
     # This logic assumes N-pair data does not contain ties.
     if "=" in pref_str:
-        return None # Malformed for strict N-pair ranking
+        return None
 
     try:
         # Remove separators to get the character order, e.g., "CAB"
         char_ranking = pref_str.replace(">", "").replace("<", "")
         if len(char_ranking) != num_images:
-            return None # Malformed ranking string
+            return None
 
         # Convert character order to index order, e.g., ['C', 'A', 'B'] -> (2, 0, 1)
         index_ranking = tuple(ord(char) - ord('A') for char in char_ranking)
@@ -468,7 +460,7 @@ def get_gt_ranking(human_vote, num_images):
 
 def calc_accuracy_with_ties_for_edit_reward_bench(h, m):
     """
-    MODIFIED: This function now returns both the max accuracy and the optimal epsilon.
+    This function returns both the max accuracy and the optimal epsilon.
     """
     try:
         if not h: return 0.0, 0.0
@@ -493,20 +485,29 @@ def calc_accuracy_with_ties_for_edit_reward_bench(h, m):
         return 0.0, 0.0
 
 
-def evaluate_edit_reward_bench(inferencer, log_file, json_out_path):
+def evaluate_edit_reward_bench(inferencer, log_file, json_out_path, benchmark_data_dir=None):
     """
-    REVISED: Provides highly detailed, traceable logging for every data item.
+    Provides highly detailed, traceable logging for every data item.
     - Generates a summary JSON (_accuracy.json) and a detailed per-item log JSON (_detailed_log.json).
     - Text log also contains the full item-by-item breakdown.
+    
+    Args:
+        inferencer: EditRewardInferencer instance
+        log_file: File handle for logging
+        json_out_path: Path to save output JSON
+        benchmark_data_dir: Directory containing benchmark JSON files (optional)
     """
-    # This path is for the detailed per-item log file
     detailed_log_path = json_out_path.replace("_accuracy.json", "_detailed_log.json")
     
-    base_path = "/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/data/dataset/edit_reward_bench/"
+    # Use provided directory or default relative path
+    if benchmark_data_dir is None:
+        benchmark_data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                                         "data", "dataset", "edit_reward_bench")
+    
     files_to_process = {
-        "2-Pair": os.path.join(base_path, "EditReward_Bench_2pair.json"),
-        "3-Pair": os.path.join(base_path, "EditReward_Bench_3pair.json"),
-        "4-Pair": os.path.join(base_path, "EditReward_Bench_4pair.json"),
+        "2-Pair": os.path.join(benchmark_data_dir, "EditReward_Bench_2pair.json"),
+        "3-Pair": os.path.join(benchmark_data_dir, "EditReward_Bench_3pair.json"),
+        "4-Pair": os.path.join(benchmark_data_dir, "EditReward_Bench_4pair.json"),
     }
 
     # Initialize overall counters and a list for all detailed logs
@@ -603,7 +604,7 @@ def evaluate_edit_reward_bench(inferencer, log_file, json_out_path):
                 detailed_item_log["model_outputs"].append({
                     "path": path,
                     "score": scores[path_idx],
-                    "predicted_rank": int(ranks[path_idx]) + 1 # 1-based rank
+                    "predicted_rank": int(ranks[path_idx]) + 1
                 })
             
             all_detailed_logs.append(detailed_item_log)
@@ -659,134 +660,8 @@ def evaluate_edit_reward_bench(inferencer, log_file, json_out_path):
     
     return results["overall"]["pairwise_accuracy"]
 
-# def evaluate_edit_reward_bench(inferencer, log_file, json_out_path):
-#     """
-#     REVISED: Strict Ranking Accuracy for 2-pair data now uses the dynamically
-#     calculated optimal epsilon to determine model ties.
-#     """
-#     base_path = "/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/data/dataset/edit_reward_bench/"
-#     files_to_process = {
-#         "2-Pair": os.path.join(base_path, "EditReward_Bench_2pair.json"),
-#         "3-Pair": os.path.join(base_path, "EditReward_Bench_3pair.json"),
-#         "4-Pair": os.path.join(base_path, "EditReward_Bench_4pair.json"),
-#     }
 
-#     # Initialize counters for overall results
-#     overall_human_labels, overall_model_diffs = [], []
-#     overall_strict_correct, overall_total_samples = 0, 0
-#     results = {}
-
-#     for name, json_path in files_to_process.items():
-#         if not os.path.exists(json_path):
-#             print(f"File not found for {name}: {json_path}. Skipping.")
-#             continue
-
-#         log_file.write(f"\n===== Evaluating Benchmark: {name} =====\n")
-#         print(f"\n===== Evaluating Benchmark: {name} =====")
-        
-#         with open(json_path, "r") as f:
-#             dataset = json.load(f)
-
-#         # --- Stage 1: Collect all model scores and ground truth info ---
-#         # We need to do this first to calculate the optimal epsilon for the entire file
-        
-#         file_human_labels, file_model_diffs = [], []
-#         # Store per-sample info {gt_ranking, scores} for Stage 2
-#         samples_for_strict_eval = []
-
-#         for idx, item in enumerate(tqdm(dataset, desc=f"Stage 1/2: Scoring {name}")):
-#             # ... (score calculation logic remains the same) ...
-#             prompt, path_src, paths_generated = item["prompt"], item["path_src"], item["paths_generated"]
-#             if not path_src or not all(paths_generated): continue
-#             scores = []
-#             for gen_path in paths_generated:
-#                 with torch.no_grad():
-#                     rewards = inferencer.reward(prompts=[prompt], image_src=[path_src], image_paths=[gen_path])
-#                 scores.append(rewards[0][0].item())
-#                 del rewards; torch.cuda.empty_cache(); gc.collect()
-
-#             # Store info for strict eval
-#             gt_ranking_or_tie = get_gt_ranking(item["human_vote"], len(paths_generated))
-#             samples_for_strict_eval.append({"gt": gt_ranking_or_tie, "scores": scores})
-            
-#             # Generate pairwise comparisons for pairwise acc
-#             for i, j in combinations(range(len(paths_generated)), 2):
-#                 model_diff = scores[i] - scores[j]
-#                 gt = get_pairwise_gt(item["human_vote"], i, j)
-#                 file_human_labels.append(gt)
-#                 file_model_diffs.append(model_diff)
-
-#         # --- Stage 2: Calculate accuracies using the collected data ---
-        
-#         # Calculate pairwise accuracy and get optimal_epsilon if applicable
-#         optimal_epsilon = 0.0 # Default for no-tie datasets
-#         if '2-Pair' in name:
-#             pairwise_acc, optimal_epsilon = calc_accuracy_with_ties_for_edit_reward_bench(file_human_labels, file_model_diffs)
-#             pairwise_acc_type = "Pairwise Acc (with ties)"
-#             log_file.write(f"\nOptimal Epsilon for 2-Pair data: {optimal_epsilon:.4f}\n")
-#         else: # 3-Pair and 4-Pair datasets have no ties
-#             pairwise_acc = calc_accuracy_without_ties(file_human_labels, file_model_diffs)
-#             pairwise_acc_type = "Pairwise Acc (without ties)"
-
-#         # Calculate strict accuracy using the optimal_epsilon
-#         file_strict_correct, file_total_samples = 0, 0
-#         for sample in tqdm(samples_for_strict_eval, desc=f"Stage 2/2: Strict Acc ({name})"):
-#             file_total_samples += 1
-#             gt, scores = sample["gt"], sample["scores"]
-#             is_correct = False
-#             if gt == "tie":
-#                 score_diff = abs(scores[0] - scores[1])
-#                 if score_diff <= optimal_epsilon: # Use the calculated epsilon
-#                     is_correct = True
-#             elif gt is not None:
-#                 model_ranking = tuple(np.argsort(scores)[::-1])
-#                 if gt == model_ranking:
-#                     is_correct = True
-#             if is_correct:
-#                 file_strict_correct += 1
-
-#         strict_acc = file_strict_correct / file_total_samples if file_total_samples > 0 else 0.0
-
-#         # Store and log results for the current file
-#         results[name] = { "pairwise_accuracy": pairwise_acc, "strict_ranking_accuracy": strict_acc }
-#         result_text = (
-#             f"\n--- Result for {name} ---\n"
-#             f"{pairwise_acc_type}: {pairwise_acc:.4f}\n"
-#             f"Strict Ranking Accuracy: {strict_acc:.4f} ({file_strict_correct}/{file_total_samples} samples)\n"
-#         )
-#         print(result_text)
-#         log_file.write(result_text)
-
-#         # Aggregate for overall results
-#         overall_human_labels.extend(file_human_labels)
-#         overall_model_diffs.extend(file_model_diffs)
-#         overall_strict_correct += file_strict_correct
-#         overall_total_samples += file_total_samples
-
-#     # --- Final Overall Results ---
-#     # Overall pairwise uses the combined data to find the best overall metric
-#     overall_pairwise_acc, _ = calc_accuracy_with_ties(overall_human_labels, overall_model_diffs)
-#     # Overall strict is the micro-average of correct samples over all samples
-#     overall_strict_acc = overall_strict_correct / overall_total_samples if overall_total_samples > 0 else 0.0
-    
-#     results["overall"] = { "pairwise_accuracy": overall_pairwise_acc, "strict_ranking_accuracy": overall_strict_acc }
-#     final_text = (
-#         f"\n====== [EditReward_Bench] Final Overall Results ======\n"
-#         f"Overall Pairwise Accuracy (with ties): {overall_pairwise_acc:.4f}\n"
-#         f"Overall Strict Ranking Accuracy: {overall_strict_acc:.4f} ({overall_strict_correct}/{overall_total_samples} samples)\n"
-#     )
-#     print(final_text)
-#     log_file.write(final_text)
-
-#     with open(json_out_path, "w", encoding="utf-8") as f:
-#         json.dump(results, f, indent=2, ensure_ascii=False)
-#     print(f"EditReward_Bench results saved to {json_out_path}")
-    
-#     return results["overall"]["pairwise_accuracy"]
-
-# ===== 配置部分 =====
 def main(args):
-    # ===== 配置部分 =====
     model_name = args.model_name
     config_path = args.config_path
     evaluate_benchmark = args.evaluate_benchmark
@@ -794,38 +669,56 @@ def main(args):
     inference_mode = args.inference_mode
     reward_dim = args.reward_dim
     rm_head_type = args.rm_head_type
+    
     if inference_mode not in ["pairwise_inference", "single_inference"]:
-        raise ValueError(f"Unsupported pair_wise_inference: {inference_mode}")
+        raise ValueError(f"Unsupported inference_mode: {inference_mode}")
 
-    if "MiMo" in model_name:
-        checkpoint_path = (
-            f"/pfs/training-data/kemingwu/hf_cache/models/EditReward/"
-            f"{model_name}/{model_name}/checkpoint-{checkpoint_step}"
-        )
+    # Construct checkpoint path
+    if args.checkpoint_path:
+        checkpoint_path = args.checkpoint_path
     else:
-        checkpoint_path = (
-            f"/pfs/training-data/kemingwu/hf_cache/models/EditReward/"
-            f"{model_name}/EditReward-Qwen2/checkpoint-{checkpoint_step}"
-        )
+        # Default path structure
+        if "MiMo" in model_name or "Qwen3-VL" in model_name:
+            checkpoint_path = os.path.join(
+                args.model_base_dir or "models",
+                model_name,
+                model_name,
+                f"checkpoint-{checkpoint_step}"
+            )
+        else:
+            checkpoint_path = os.path.join(
+                args.model_base_dir or "models",
+                model_name,
+                "EditReward-Qwen2",
+                f"checkpoint-{checkpoint_step}"
+            )
 
+    # Get benchmark data paths
+    if args.benchmark_data_dir:
+        benchmark_data_dir = args.benchmark_data_dir
+    else:
+        benchmark_data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                                         "data", "dataset")
+    
     if evaluate_benchmark == "genai_edit_bench":
-        json_path = "/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/data/dataset/valid_set2_full.json"
+        json_path = args.benchmark_json_path or os.path.join(benchmark_data_dir, "valid_set2_full.json")
     elif evaluate_benchmark == "aurora_bench_pairwise":
-        json_path = "/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/data/dataset/valid_aurora_human_ratings_pairwise.json"
+        json_path = args.benchmark_json_path or os.path.join(benchmark_data_dir, "valid_aurora_human_ratings_pairwise.json")
     elif evaluate_benchmark == "aurora_bench_pairwise_revise":
-        json_path = "/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/data/dataset/valid_human_ratings_pairwise_with_scores_revise_20250923.json"
+        json_path = args.benchmark_json_path or os.path.join(benchmark_data_dir, "valid_human_ratings_pairwise_with_scores_revise.json")
     elif evaluate_benchmark == "aurora_bench_pointwise":
-        json_path = "/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/data/dataset/valid_aurora_human_ratings_pointwise.json"
+        json_path = args.benchmark_json_path or os.path.join(benchmark_data_dir, "valid_aurora_human_ratings_pointwise.json")
         inference_mode = "single_inference"
     elif "imagenhub_bench" in evaluate_benchmark:
-        json_path = "/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/data/dataset/valid_imagenhub_processed.json"
+        json_path = args.benchmark_json_path or os.path.join(benchmark_data_dir, "valid_imagenhub_processed.json")
         inference_mode = "single_inference"
     elif evaluate_benchmark == "edit_reward_bench":
         inference_mode = "single_inference"
+        edit_reward_bench_dir = args.benchmark_data_dir or os.path.join(benchmark_data_dir, "edit_reward_bench")
     else:
         raise ValueError(f"Unsupported benchmark: {evaluate_benchmark}")
 
-    # 初始化模型
+    # Initialize model
     inferencer = EditRewardInferencer(
         config_path=config_path,
         checkpoint_path=checkpoint_path,
@@ -834,8 +727,16 @@ def main(args):
         rm_head_type=args.rm_head_type
     )
 
-    log_path = (
-        f"/pfs/training-data/kemingwu/workspace/EditReward/HPSv3/results/{evaluate_benchmark}/"
+    # Set output directory
+    if args.output_dir:
+        output_dir = args.output_dir
+    else:
+        output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                                  "results", evaluate_benchmark)
+    os.makedirs(output_dir, exist_ok=True)
+    
+    log_path = os.path.join(
+        output_dir,
         f"{model_name}_step_{checkpoint_step}_{evaluate_benchmark}_inference_mode_{inference_mode}_f_{rm_head_type}_eval_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
     )
     log_file = open(log_path, "w", encoding="utf-8")
@@ -848,29 +749,28 @@ def main(args):
             r_avg = evaluate_imagenhub_from_json_v2(json_path, inferencer, log_file, json_out_path)
         log_file.close()
         print(f"Final ImagenHub Spearman Correlation = {r_avg:.4f}")
-        print(f"日志已保存到 {log_path}")
+        print(f"Log saved to {log_path}")
         return
     elif evaluate_benchmark == "aurora_bench_pointwise":
         json_out_path = log_path.replace(".txt", "_spearman.json")
         r_avg = evaluate_aurora_from_json_pointwise(json_path, inferencer, log_file, json_out_path)
         log_file.close()
         print(f"Final Aurora Spearman Correlation = {r_avg:.4f}")
-        print(f"日志已保存到 {log_path}")
+        print(f"Log saved to {log_path}")
         return
     elif evaluate_benchmark == "edit_reward_bench":
         json_out_path = log_path.replace(".txt", "_accuracy.json")
-        overall_acc = evaluate_edit_reward_bench(inferencer, log_file, json_out_path)
+        overall_acc = evaluate_edit_reward_bench(inferencer, log_file, json_out_path, edit_reward_bench_dir)
         log_file.close()
         print(f"Final EditReward_Bench Overall Accuracy = {overall_acc:.4f}")
-        print(f"日志已保存到 {log_path}")
+        print(f"Log saved to {log_path}")
         return
 
-
-        # 读取数据
+    # Load data
     with open(json_path, "r") as f:
         dataset = json.load(f)
 
-    # 保存人类标签 & 模型分差
+    # Store human labels & model score differences
     human_labels, model_diffs = [], []
 
     for idx, item in enumerate(tqdm(dataset, desc="Evaluating")):
@@ -880,7 +780,7 @@ def main(args):
         prompts = [prompt, prompt]
 
         if inference_mode == "pairwise_inference":
-            # 模型预测分数
+            # Model prediction scores
             with torch.no_grad():
                 rewards = inferencer.reward(prompts=prompts, image_src=image_src, image_paths=image_paths)
             scores = [reward[0].item() for reward in rewards]
@@ -890,7 +790,7 @@ def main(args):
             torch.cuda.empty_cache()
             gc.collect()
         elif inference_mode == "single_inference":
-            # 模型预测分数
+            # Model prediction scores
             with torch.no_grad():
                 rewards_A = inferencer.reward(prompts=[prompts[0]], image_src=[image_src[0]], image_paths=[image_paths[0]])
                 rewards_B = inferencer.reward(prompts=[prompts[1]], image_src=[image_src[1]], image_paths=[image_paths[1]])
@@ -913,7 +813,7 @@ def main(args):
         human_labels.append(gt)
         model_diffs.append(diff)
 
-        # 构造日志信息
+        # Construct log message
         log_text = (
             f"\n--- Sample {idx+1} ---\n"
             f"Prompt: {prompt}\n"
@@ -924,7 +824,7 @@ def main(args):
         log_file.write(log_text)
         log_file.flush()
 
-    # ===== 计算最终准确率 =====
+    # ===== Calculate final accuracy =====
     acc_with_ties = calc_accuracy_with_ties(human_labels, model_diffs)
     acc_without_ties = calc_accuracy_without_ties(human_labels, model_diffs)
 
@@ -939,19 +839,41 @@ def main(args):
     log_file.write(final_text)
     log_file.close()
 
-    print(f"日志已保存到 {log_path}")
+    print(f"Log saved to {log_path}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate EditReward model on benchmarks")
-    parser.add_argument("--model_name", type=str, required=True, help="模型名称，例如 EditReward-Qwen2.5-7B-VL_dim1_loss_uncertainty_data_4k_20250913")
-    parser.add_argument("--evaluate_benchmark", type=str, required=True, choices=["genai_edit_bench", "aurora_bench_pairwise", "aurora_bench_pairwise_revise", "imagenhub_bench", "imagenhub_bench_v2", "aurora_bench_pointwise", "edit_reward_bench"], help="选择 benchmark")
-    parser.add_argument("--checkpoint_step", type=int, required=True, help="checkpoint step，例如 5034")
-    parser.add_argument("--config_path", type=str, required=True, help="config path")
-    parser.add_argument("--device", type=str, default="cuda", help="运行设备，默认 cuda")
-    parser.add_argument("--reward_dim", type=str, default="dim1", help="reward 维度，默认 dim1")
-    parser.add_argument("--inference_mode", type=str, default="pairwise_inference", choices=["pairwise_inference", "single_inference"], help="pairwise inference 或 single inference")
-    parser.add_argument("--rm_head_type", type=str, default="ranknet_multi_head", choices=["ranknet_multi_head", "ranknet_single_head"], help="ranknet 多头或单头")
+    parser.add_argument("--model_name", type=str, required=True, 
+                        help="Model name, e.g., EditReward-Qwen2.5-7B-VL_dim1_loss_uncertainty_data_4k_20250913")
+    parser.add_argument("--evaluate_benchmark", type=str, required=True, 
+                        choices=["genai_edit_bench", "aurora_bench_pairwise", "aurora_bench_pairwise_revise", 
+                                "imagenhub_bench", "imagenhub_bench_v2", "aurora_bench_pointwise", "edit_reward_bench"], 
+                        help="Benchmark to evaluate")
+    parser.add_argument("--checkpoint_step", type=int, required=True, 
+                        help="Checkpoint step, e.g., 5034")
+    parser.add_argument("--config_path", type=str, required=True, 
+                        help="Path to model config YAML file")
+    parser.add_argument("--checkpoint_path", type=str, default=None,
+                        help="Full path to checkpoint directory. If not provided, will construct from model_name and checkpoint_step")
+    parser.add_argument("--model_base_dir", type=str, default=None,
+                        help="Base directory for model checkpoints. Default: 'models'")
+    parser.add_argument("--benchmark_data_dir", type=str, default=None,
+                        help="Directory containing benchmark data files. If not provided, uses default relative path")
+    parser.add_argument("--benchmark_json_path", type=str, default=None,
+                        help="Path to specific benchmark JSON file. Overrides benchmark_data_dir for specific benchmarks")
+    parser.add_argument("--output_dir", type=str, default=None,
+                        help="Directory to save evaluation results. Default: results/{benchmark_name}")
+    parser.add_argument("--device", type=str, default="cuda", 
+                        help="Device to run on (default: cuda)")
+    parser.add_argument("--reward_dim", type=str, default="dim1", 
+                        help="Reward dimension (default: dim1)")
+    parser.add_argument("--inference_mode", type=str, default="pairwise_inference", 
+                        choices=["pairwise_inference", "single_inference"], 
+                        help="Inference mode: pairwise_inference or single_inference")
+    parser.add_argument("--rm_head_type", type=str, default="ranknet_multi_head", 
+                        choices=["ranknet_multi_head", "ranknet_single_head"], 
+                        help="RankNet head type: multi-head or single-head")
     args = parser.parse_args()
 
     main(args)
