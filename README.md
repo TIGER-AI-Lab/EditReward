@@ -4,7 +4,7 @@
 
 <div align="center">
 
-# EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing
+# EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing (ICLR 2026)
 
 [![Project Website](https://img.shields.io/badge/🌐-Project%20Website-deepgray)](https://tiger-ai-lab.github.io/EditReward/)
 [![arXiv](https://img.shields.io/badge/arXiv-2509.26346-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
