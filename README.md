@@ -13,12 +13,12 @@
 [![Benchmark](https://img.shields.io/badge/📊-Benchmark-yello)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
 </div>
 
-<p align="center" style="font-size: 4em;">
+<p align="center" style="font-size: 10em;">
   We acknowledge the data contribution and support from    
   <a href="https://www.abaka.ai/" target="_blank">
     <img src="./assets/logo_abaka.png"
          alt="Abaka AI"
-         style="height:1.7em; vertical-align:middle;">
+         style="height:2.1em; vertical-align:text-bottom; position:relative; top:7px;"
   </a>
 </p>
 
