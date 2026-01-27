@@ -4,7 +4,7 @@
 
 - [x] **Qwen2.5-VL Series** 
 - [x] **MiMo-VL Series**
-- [ ] **Qwen3-VL Series**
+- [x] **Qwen3-VL Series**
 
 ### Download EditReward-Data
 <!-- ```
@@ -122,9 +122,21 @@ pip install datasets pillow openai -U megfile sentencepiece deepspeed fire omega
 # Recommend: Install flash-attn
 pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.2.post1/flash_attn-2.7.2.post1+cu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 
+# (Recommended) Unified entry for Qwen2.5-VL / Qwen3-VL:
+# It will automatically select model/collator based on `model_name_or_path` in the config.
+
+# Train with Qwen2.5-7B-VL model (unified)
+deepspeed EditReward/train_qwen_vl_edit.py --config EditReward/config/EditReward-Qwen2.5-7B-VL.yaml
+
+# Train with Qwen3-VL model (unified)
+deepspeed EditReward/train_qwen_vl_edit.py --config EditReward/config/EditReward-Qwen3-VL.yaml
+
 # Train with Qwen2.5-7B-VL model
 deepspeed EditReward/train_qwen2_5_edit.py --config EditReward/config/EditReward-Qwen2.5-7B-VL.yaml
 
 # Train with MiMo-VL-7B-SFT-2508 model
 deepspeed EditReward/train_qwen2_5_edit.py --config EditReward/config/EditReward-MiMo-VL-7B-SFT-2508.yaml
+
+# (Optional) Train with Qwen3-VL model (Qwen3-only entry)
+deepspeed EditReward/train_qwen3_vl_edit.py --config EditReward/config/EditReward-Qwen3-VL.yaml
 ```

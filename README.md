@@ -27,6 +27,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 
 ## 📰 News
+- **[2026-01-27]** 🔥 Add training & inference support for **Qwen3-VL Series**!
 - **[2026-01-26]** 🔥 Our paper has been accepted by **ICLR 2026**!
 - **[2025-10-29]** 🔥 Release the training guideline of EditReward, see [Training Insctruction](EditReward/TRAIN_README.md)!
 - **[2025-10-14]** 🔥 Release the evaluation code and guideline of EditReward-Bench, see [Evaluate Insctruction](EditReward/evaluate/README.md)!
@@ -88,6 +89,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import torch
 from EditReward import EditRewardInferencer
+from EditReward.inference_vl_edit import EditRewardVLInferencer
 
 # ------------------------------------------------------------------------------
 # Example script for evaluating edited images with EditReward
@@ -105,6 +107,18 @@ inferencer = EditRewardInferencer(
     reward_dim="overall_detail",    # choose reward dimension if applicable
     rm_head_type="ranknet_multi_head"
 )
+
+# (Optional) Unified inferencer for Qwen2.5-VL / Qwen3-VL:
+# Just switch CONFIG_PATH to either:
+# - "config/EditReward-Qwen2.5-7B-VL.yaml"
+# - "config/EditReward-Qwen3-VL.yaml"
+# inferencer = EditRewardVLInferencer(
+#     config_path=CONFIG_PATH,
+#     checkpoint_path=CHECKPOINT_PATH,
+#     device="cuda",
+#     reward_dim="overall_detail",
+#     rm_head_type="ranknet_multi_head",
+# )
 
 # Example input data -----------------------------------------------------------
 # image_src = [
@@ -201,11 +215,23 @@ huggingface-cli download --repo-type dataset TIGER-Lab/EditReward-Data --local-d
 
 - [x] **Qwen2.5-VL Series** 
 - [x] **MiMo-VL Series**
-- [ ] **Qwen3-VL Series**
+- [x] **Qwen3-VL Series**
 
 ### 🚀 Training Command
 
 To train **EditReward** model, follow the detail instruction in [Training Insctruction](EditReward/TRAIN_README.md)
+
+#### Unified training entry (Qwen2.5-VL / Qwen3-VL)
+
+We provide a unified training entry that automatically selects the correct model/collator based on `model_name_or_path`:
+
+```bash
+# Qwen2.5-VL
+python EditReward/EditReward/train_qwen_vl_edit.py --config EditReward/EditReward/config/EditReward-Qwen2.5-7B-VL.yaml
+
+# Qwen3-VL
+python EditReward/EditReward/train_qwen_vl_edit.py --config EditReward/EditReward/config/EditReward-Qwen3-VL.yaml
+```
 
 ---
 
