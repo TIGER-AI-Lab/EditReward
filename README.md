@@ -4,9 +4,7 @@
 
 <div align="center">
 
-# EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing
-
- ${{\color{Red}\Huge{\textsf{  ICLR\ 2026\ \}}}}\$
+# ✨[ICLR 2026] EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing
  
 [![Project Website](https://img.shields.io/badge/🌐-Project%20Website-deepgray)](https://tiger-ai-lab.github.io/EditReward/)
 [![arXiv](https://img.shields.io/badge/arXiv-2509.26346-b31b1b.svg)](https://arxiv.org/abs/2509.26346)
@@ -14,6 +12,16 @@
 [![Dataset](https://img.shields.io/badge/🤗-Dataset-green)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Data)
 [![Benchmark](https://img.shields.io/badge/📊-Benchmark-yello)](https://huggingface.co/datasets/TIGER-Lab/EditReward-Bench)
 </div>
+
+<p align="center" style="font-size: 4em;">
+  We acknowledge the data contribution and support from    
+  <a href="https://www.abaka.ai/" target="_blank">
+    <img src="./assets/logo_abaka.png"
+         alt="Abaka AI"
+         style="height:1.7em; vertical-align:middle;">
+  </a>
+</p>
+
 
 
 ## 📖 Introduction
