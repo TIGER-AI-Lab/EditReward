@@ -26,7 +26,7 @@
 
 ## 📖 Introduction
 
-This is the official implementation for the paper: [EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing](https://arxiv.org/abs/2508.03789).
+This is the official implementation for the paper: [EditReward: A Human-Aligned Reward Model for Instruction-Guided Image Editing](https://arxiv.org/abs/2509.26346).
 In this paper, we introduce **EditReward**, a human-aligned reward model powered by a high-quality dataset for instruction-guided image editing. We first construct **EditReward-Data**, a large-scale, high-fidelity preference dataset for instruction-guided image editing. It comprises over 200K manually annotated preference pairs, covering a diverse range of edits produced by seven state-of-the-art models across twelve distinct sources. Every preference annotation in **EditReward-Data** was curated by trained annotators following a rigorous and standardized protocol, ensuring high alignment with considered human judgment and minimizing label noise. Using this dataset, we train the reward model **EditReward** to score instruction-guided image edits. To rigorously assess **EditReward** and future models, we also introduce **EditReward-Bench** a new benchmark built upon our high-quality annotations, which includes more difficult multi-way preference prediction.
 
 <p align="center">
