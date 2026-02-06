@@ -35,6 +35,7 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 
 
 ## 📰 News
+- **[2026-02-06]** 🔥 We started maintaining a list of <a href="#-awesome-works-using-editreward">Awesome Works</a> using EditReward!
 - **[2026-01-27]** 🔥 Add training & inference support for **Qwen3-VL Series**!
 - **[2026-01-26]** 🔥 Our paper has been accepted by **ICLR 2026**!
 - **[2025-10-29]** 🔥 Release the training guideline of EditReward, see [Training Insctruction](EditReward/TRAIN_README.md)!
@@ -53,14 +54,14 @@ In this paper, we introduce **EditReward**, a human-aligned reward model powered
 <!-- - [ ] Release better model -->
 
 ## 📄 Table of Contents
-- [🛠️ Installation](#%EF%B8%8F-installation-)
-- [👨‍🏫 Get Started](#-get-started-)
-- [🏋️ Training](#🏋️-training)
-- [📊 Benchmark](#📊-benchmark)
-- [🖊️ Citation](#%EF%B8%8F-citation-)
-- [🤝 Acknowledgement](#-acknowledgement-)
-- [🎫 License](#-license-)
-
+- [🛠️ Installation](#-installation)
+- [👨‍🏫 Get Started](#-get-started)
+- [🏋️ Training](#-training)
+- [📊 Benchmark](#-benchmark)
+- [🖊️ Citation](#-citation)
+- [🤝 Acknowledgement](#-acknowledgement)
+- [✨ Awesome Works using EditReward](#-awesome-works-using-editreward)
+- [🎫 License](#-license)
 ---
 
 ## 🚀 Quick Start
@@ -318,6 +319,15 @@ Please kindly cite our paper if you use our code, data, models or results:
 ## 🙏 Acknowledgements
 
 We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3), [VideoAlign](https://github.com/KwaiVGI/VideoAlign) and [GenAI-Bench](https://github.com/TIGER-AI-Lab/GenAI-Bench) codebase for providing valuable references.
+
+---
+
+## <a id="-awesome-works-using-editreward"></a>✨ Awesome Works using EditReward
+
+😊 Reve, CUHK, [PromptRL: Prompt Matters in RL for Flow-Based Image Generation](https://arxiv.org/abs/2602.01382).
+😊 Adobe, HKU, [Both Semantics and Reconstruction Matter: Making Representation Encoders Ready for Text-to-Image Generation and Editing](https://arxiv.org/abs/2512.17909).
+😊 Meta, [Multimodal RewardBench 2: Evaluating Omni Reward Models for Interleaved Text and Image](https://arxiv.org/pdf/2512.16899).
+😊 Google DeepMind, CUHK, [Image Diffusion Preview with Consistency Solver](https://arxiv.org/abs/2512.13592).
 
 ---
 ## ⭐ Star History [🔝](#-table-of-contents)
