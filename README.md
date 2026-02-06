@@ -325,8 +325,11 @@ We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3), [VideoAli
 ## <a id="-awesome-works-using-editreward"></a>✨ Awesome Works using EditReward
 
 😊 Reve, CUHK, [PromptRL: Prompt Matters in RL for Flow-Based Image Generation](https://arxiv.org/abs/2602.01382).
+
 😊 Adobe, HKU, [Both Semantics and Reconstruction Matter: Making Representation Encoders Ready for Text-to-Image Generation and Editing](https://arxiv.org/abs/2512.17909).
+
 😊 Meta, [Multimodal RewardBench 2: Evaluating Omni Reward Models for Interleaved Text and Image](https://arxiv.org/pdf/2512.16899).
+
 😊 Google DeepMind, CUHK, [Image Diffusion Preview with Consistency Solver](https://arxiv.org/abs/2512.13592).
 
 ---
