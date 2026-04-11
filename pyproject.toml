@@ -1,0 +1,91 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "editreward"
+version = "0.1.0"
+description = "EditReward: A human-aligned reward model for instruction-guided image editing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "TIGER Lab" },
+]
+keywords = [
+    "machine learning",
+    "computer vision",
+    "image editing",
+    "reward model",
+    "vision language model",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "torch>=2.5.0",
+    "torchvision>=0.20.0",
+    "torchaudio>=2.5.0",
+    "transformers==4.57.0",
+    "accelerate",
+    "datasets",
+    "Pillow",
+    "numpy",
+    "scipy",
+    "tqdm",
+    "PyYAML",
+    "omegaconf",
+    "safetensors",
+    "requests",
+    "packaging",
+    "pandas",
+    "opencv-python",
+    "einops",
+    "timm",
+    "huggingface_hub",
+    "qwen-vl-utils",
+    "megfile",
+    "sentencepiece",
+    "deepspeed",
+    "fire",
+    "matplotlib",
+    "peft",
+    "trl==0.8.6",
+    "tensorboard",
+    "openai",
+    "av",
+    "regex",
+]
+
+[project.urls]
+Homepage = "https://tiger-ai-lab.github.io/EditReward/"
+Source = "https://github.com/TIGER-AI-Lab/EditReward"
+Documentation = "https://github.com/TIGER-AI-Lab/EditReward/blob/main/README.md"
+Paper = "https://arxiv.org/abs/2509.26346"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["EditReward*"]
+namespaces = true
+
+[tool.setuptools.package-data]
+EditReward = [
+    "config/*.yaml",
+    "config/ds_config/*.json",
+    "evaluate/genaibench/templates/*/*.txt",
+    "evaluate/genaibench/mllm_tools/model_utils/otter/models/otter/*.json",
+    "evaluate/genaibench/mllm_tools/model_utils/otter/models/otter/utils/*.json",
+    "evaluate/genaibench/mllm_tools/model_utils/otter/models/flamingo/*.json",
+    "evaluate/genaibench/mllm_tools/model_utils/otter/models/flamingo/utils/*.json",
+]

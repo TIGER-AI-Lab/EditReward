@@ -70,21 +70,28 @@ EditReward is a VLM-based reward model trained on EditReward-Data that demonstra
 
 ### 💻 Installation
 
-<!-- # Method 1: Pypi download and install for inference.
-pip install hpsv3 -->
-
 ```bash
-
+# Install locally for development or training.
 git clone https://github.com/TIGER-AI-Lab/EditReward.git
 cd EditReward
 
 conda create -n edit_reward python=3.10 -y
 conda activate edit_reward
+
+# Install PyTorch first (CUDA 12.4 example).
 pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
-pip install datasets pillow openai -U megfile sentencepiece deepspeed fire omegaconf matplotlib peft trl==0.8.6 tensorboard scipy transformers==4.57.0 accelerate
-# Recommend: Install flash-attn
+
+# Install the remaining runtime dependencies.
+pip install -U datasets pillow openai megfile sentencepiece deepspeed fire omegaconf \
+  matplotlib peft trl==0.8.6 tensorboard scipy transformers==4.57.0 accelerate \
+  requests packaging pandas opencv-python einops timm huggingface_hub qwen-vl-utils \
+  av regex safetensors tqdm
+
+# Optional but recommended.
 pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.2.post1/flash_attn-2.7.2.post1+cu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 
+# Install EditReward as an editable package.
+pip install -e .
 ```
 
 
@@ -92,10 +99,6 @@ pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.
 
 #### Basic Command
 ```python
-import os
-import sys
-# Add project root to Python path (optional, for local development)
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import torch
 from EditReward import EditRewardInferencer
 from EditReward.inference_vl_edit import EditRewardVLInferencer
@@ -104,7 +107,8 @@ from EditReward.inference_vl_edit import EditRewardVLInferencer
 # Example script for evaluating edited images with EditReward
 # ------------------------------------------------------------------------------
 
-# Path to model checkpoint (update to your own local or HF path)
+# Package-relative config paths work after `pip install -e .`.
+# You can also pass an absolute path to a local YAML config.
 CHECKPOINT_PATH = "your/local/path/to/checkpoint"
 CONFIG_PATH = "config/EditReward-MiMo-VL-7B-SFT-2508.yaml"
 
@@ -236,10 +240,10 @@ We provide a unified training entry that automatically selects the correct model
 
 ```bash
 # Qwen2.5-VL
-python EditReward/EditReward/train_qwen_vl_edit.py --config EditReward/EditReward/config/EditReward-Qwen2.5-7B-VL.yaml
+python EditReward/train_qwen_vl_edit.py --config EditReward/config/EditReward-Qwen2.5-7B-VL.yaml
 
 # Qwen3-VL
-python EditReward/EditReward/train_qwen_vl_edit.py --config EditReward/EditReward/config/EditReward-Qwen3-VL.yaml
+python EditReward/train_qwen_vl_edit.py --config EditReward/config/EditReward-Qwen3-VL.yaml
 ```
 
 ---

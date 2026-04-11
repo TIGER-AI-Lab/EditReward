@@ -25,6 +25,26 @@ from .dataset.prompts import (
 )
 
 _MODEL_CONFIG_PATH = Path(__file__).parent / "config/"
+_DEFAULT_CONFIG_FILENAME = "EditReward-Qwen3-VL.yaml"
+
+
+def _resolve_config_path(config_path):
+    if config_path is None:
+        return str(_MODEL_CONFIG_PATH / _DEFAULT_CONFIG_FILENAME)
+
+    candidate_paths = [
+        Path(config_path),
+        _MODEL_CONFIG_PATH.parent / config_path,
+        _MODEL_CONFIG_PATH / Path(config_path).name,
+    ]
+    for candidate in candidate_paths:
+        if candidate.is_file():
+            return str(candidate)
+
+    raise FileNotFoundError(
+        f"Config not found: {config_path}. "
+        f"Checked {[str(path) for path in candidate_paths]}"
+    )
 
 
 class EditRewardQwen3Inferencer:
@@ -36,8 +56,7 @@ class EditRewardQwen3Inferencer:
         reward_dim="dim1",
         rm_head_type="ranknet_multi_head",
     ):
-        if config_path is None:
-            config_path = os.path.join(_MODEL_CONFIG_PATH, config_path)
+        config_path = _resolve_config_path(config_path)
 
         print(f"config_path: {config_path}\n")
         (data_config, training_args, model_config, peft_lora_config), config_path = (
