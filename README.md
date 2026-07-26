@@ -327,6 +327,8 @@ We would like to thank the [HPSv3](https://github.com/MizzenAI/HPSv3), [VideoAli
 ---
 
 ## <a id="-awesome-works-using-editreward"></a>✨ Awesome Works using EditReward
+😊 TIGER-AI-Lab, [RewardHarness: Self-Evolving Agentic Post-Training](https://arxiv.org/abs/2605.08703).
+
 
 😊 Reve, CUHK, [PromptRL: Prompt Matters in RL for Flow-Based Image Generation](https://arxiv.org/abs/2602.01382).
 
